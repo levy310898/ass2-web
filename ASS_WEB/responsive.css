@@ -1,0 +1,320 @@
+/*========== Non-Mobile First Method ==========*/
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 992px) {
+    .head_menu li {
+        width: 70px;
+    }
+
+    .head_menu {
+        font-size: 15px;
+    }
+    
+    .head_menu .svg-inline--fa {
+        font-size: 15px;
+    }
+
+    .lg-block{
+        display:block;
+    }
+
+    .category-nav ul{
+        width:70%;
+        margin-left:15%;
+        overflow-x: scroll;
+        display:flex;
+    }
+    /* .category-nav ul::-webkit-scrollbar{
+        display:none;
+    } */
+
+    .category-nav li{
+        margin:5px;
+        border:unset;
+        flex-shrink: 0;
+    }
+
+    .category-nav li:first-child{
+        margin-left: 0;
+    }
+
+    .category-nav li:last-child{
+        margin-right: 0;
+    }
+
+    .category-nav a{
+        --line-height:28px;
+        text-decoration: none;
+        color:#f6f6f6 !important;
+        font-size:18px;
+        padding: 0 5px;
+        line-height:(var(--line-height));
+        width:120px;
+        height:calc(var(--line-height)*2);
+        border-radius: 2px;
+        text-align: center;
+        display:block;
+        overflow: hidden;
+        display:-webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .category-nav li:hover{
+        border-bottom: unset;
+    }
+    
+    .category-nav li:hover a{
+        transform: unset;
+        color: unset;
+        filter: brightness(0.9);
+
+    }
+
+    .category-nav li:nth-child(3n + 1) a{
+        background-color: #87afd8;
+    }
+
+    .category-nav li:nth-child(3n + 2) a{
+        background-color:#76c98d;
+    }
+
+    .category-nav li:nth-child(3n) a{
+        background-color:#88cf81;
+    }
+}
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 768px) {
+    .middle_first {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .mid_first_category {
+        display: none;
+    }
+    .mid_first_hot_product {
+        width: 100%;
+        margin-left: 0;
+    }
+    .desc_detail_with_pic {
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .ddwp_text {
+        order: 1;
+        width: 100%;
+    }
+    .ddwp_image {
+        order: 2;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .ddwp_image img {
+        width: 100%;
+        height: auto;
+    }
+    .list_product li {
+        list-style: none;
+        width: 48%;
+    }
+    .product_img {
+        width: 65%;
+    }
+    .mid_sec {
+        margin-top: 45px;
+    }
+    .mid_right {
+        margin-top: 30px;
+    }
+    .buy_button {
+        width: 100%;
+    }
+    .svg-inline--fa {
+        font-size: 20px;
+    }
+    .c_contact_middle input, .c_contact_middle textarea {
+        width: 35%;
+    }
+    .info_send button {
+        width: 20%;
+    }
+    .input_field {
+        width: 40%;
+    }
+
+    .category-nav ul{
+        width:84%;
+        margin-left:8%;
+        overflow-x: scroll;
+        display:flex;
+    }
+
+    .cat_title{
+        text-align: center;
+    }
+
+    
+}
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 576px) {
+    .c_menu {
+        display: block;
+    }
+    .top {
+        display: none;
+    }
+    .head_logo {
+        order: 2;
+        width: 25%;
+        margin-left: auto;
+    }
+    .head_menu {
+        order: 1;
+    }
+    .mid_ab_picture {
+        height: auto;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .desc_detail_with_pic {
+        height: auto;
+        flex-wrap: wrap;
+    }
+    .ddwp_text {
+        order: 1;
+        width: 100%;
+    }
+    .ddwp_image {
+        order: 2;
+        margin: auto;
+        width: 68%;
+    }
+    .ddwp_image img {
+        width: 100%;
+        height: auto;
+    }
+    .list_product li {
+        list-style: none;
+        width: 100%;
+    }
+    .product_title {
+        text-align: center;
+    }
+    .product_img {
+        width: 56%;
+    }
+    .bottom {
+        align-items: center;
+    }
+    .c_footer {
+        background-repeat: repeat;
+    }
+    .svg-inline--fa {
+        color: white;
+        font-size: 30px;
+    }
+    #submenu {
+        display: block;
+    }
+    .cat {
+        border-bottom: 0;
+    }
+    .head_menu li {
+        border: 0;
+        border-radius: 0;
+        width: 100%;
+        text-align: start;
+    }
+    .head_menu .svg-inline--fa {
+        color: #444;
+    }
+    .head_menu li:last-child {
+        width: 100%;
+    }
+    .middle_first {
+        display: none;
+    }
+    .product {
+        box-shadow: 0px 4px 15px -5px #888888;
+    }
+    .product:hover {
+        box-shadow: 0px 4px 15px -5px #888888;
+    }
+    .mid_left {
+        width: 100%;
+    }
+    .product_detail_img {
+        margin: 0 auto;
+    }
+    .mid_right {
+        width: 80%;
+        height: auto;
+        margin-top: 0;
+        margin: 0 auto;
+    }
+    .detail_color_option ul {
+        width: 100%;
+    }
+    .buy_button {
+        width: 100%;
+    }
+    .svg-inline--fa {
+        font-size: 20px;
+    }
+    .c_contact_middle input, .c_contact_middle textarea {
+        width: 60%;
+    }
+    .info_send button {
+        width: 45%;
+    }
+    .c_idea_middle h2 {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 10px;
+        text-align: center;
+        line-height: 30px;
+    }
+    .list_idea {
+        margin-top: 30px;
+    }
+    .list_idea li {
+        width: 80%;
+        list-style: none;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    .idea {
+        box-shadow: 0px 4px 15px -5px #888888;
+    }
+    .idea_title {
+        padding: 0px;
+    }
+    .page_number, .page_dot {
+        padding: 12px;
+    }
+    .input_field {
+        width: 90%;
+    }
+
+
+    .category-nav ul{
+        width:92%;
+        margin-left:4%;
+        overflow-x: scroll;
+        display:flex;
+    }
+}
+
+/* Custom, iPhone Retina */
