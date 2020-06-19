@@ -22,15 +22,15 @@
                 </div>
                 <div class="top_right">
                     <ul>
-                        <li><a href="signup.html">Đăng kí</a></li>
-                        <li><a href="signin.html">Đăng nhập</a></li>
+                        <li><a href="signup.php">Đăng kí</a></li>
+                        <li><a href="signin.php">Đăng nhập</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="bottom">
                 <div class="head_logo">
-                    <a href="index.html"><img src="images/logo.jpg" alt=""></a>
+                    <a href="index.php"><img src="images/logo.jpg" alt=""></a>
                 </div>
                 
                 <div class="c_menu">
@@ -38,9 +38,9 @@
                 </div>
                 <div class="head_menu" id="my-menu">
                     <ul>
-                        <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="idea.html">Ý tưởng</a></li>
-                        <li><a href="category.html">Danh mục</a>
+                        <li><a href="index.php">Trang chủ</a></li>
+                        <li><a href="idea.php">Ý tưởng</a></li>
+                        <li><a href="category.php">Danh mục</a>
                             <ul id="submenu">
                                 <li><a href="#">
                                         <div class="cat">Sơn nội thất</div>
@@ -59,9 +59,9 @@
                                     </a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Liên hệ</a></li>
-                        <li class="li_signup"><a href="signup.html">Đăng kí</a></li>
-                        <li class="li_signin"><a href="signin.html">Đăng nhập</a></li>
+                        <li><a href="contact.php">Liên hệ</a></li>
+                        <li class="li_signup"><a href="signup.php">Đăng kí</a></li>
+                        <li class="li_signin"><a href="signin.php">Đăng nhập</a></li>
                         <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
                     </ul>
                 </div>

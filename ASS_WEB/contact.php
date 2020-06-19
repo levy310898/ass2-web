@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Đăng nhập</title>
+    <title>Liên hệ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="js/mmenu-light-master/dist/mmenu-light.css">
@@ -22,15 +22,15 @@
                 </div>
                 <div class="top_right">
                     <ul>
-                        <li><a href="signup.html">Đăng kí</a></li>
-                        <li><a href="signin.html">Đăng nhập</a></li>
+                        <li><a href="signup.php">Đăng kí</a></li>
+                        <li><a href="signin.php">Đăng nhập</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="bottom">
                 <div class="head_logo">
-                    <a href="index.html"><img src="images/logo.jpg" alt=""></a>
+                    <a href="index.php"><img src="images/logo.jpg" alt=""></a>
                 </div>
                 
                 <div class="c_menu">
@@ -38,9 +38,9 @@
                 </div>
                 <div class="head_menu" id="my-menu">
                     <ul>
-                        <li><a href="index.html">Trang chủ</a></li>
-                        <li><a href="idea.html">Ý tưởng</a></li>
-                        <li><a href="category.html">Danh mục</a>
+                        <li><a href="index.php">Trang chủ</a></li>
+                        <li><a href="idea.php">Ý tưởng</a></li>
+                        <li><a href="category.php">Danh mục</a>
                             <ul id="submenu">
                                 <li><a href="#">
                                         <div class="cat">Sơn nội thất</div>
@@ -59,9 +59,9 @@
                                     </a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Liên hệ</a></li>
-                        <li class="li_signup"><a href="signup.html">Đăng kí</a></li>
-                        <li class="li_signin"><a href="signin.html">Đăng nhập</a></li>
+                        <li><a href="contact.php">Liên hệ</a></li>
+                        <li class="li_signup"><a href="signup.php">Đăng kí</a></li>
+                        <li class="li_signin"><a href="signin.php">Đăng nhập</a></li>
                         <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
                     </ul>
                 </div>
@@ -69,15 +69,28 @@
         </div>
     </div>
 
-    <div class="c_signinup_middle">
+    <div class="c_contact_middle">
         <div class="container">
-            <div class="input_field">
-                <h2>Đăng nhập</h2>
-                <h4>Email</h4>
-                <input type="email">
-                <h4>Mật khẩu</h4>
-                <input type="password">
-                <button>Đăng nhập</button>
+            <div class="contact_information">
+                <h2>Thông tin liên hệ</h2>
+                <div>Bài tập lớn 1 - Môn Lập trình web</div>
+                <div>Chịu trách nhiệm nội dung: Lê Nguyễn Như Cường © 1997-2020 Công ty TNHH THM</div>
+                <div>Điện thoại: 0901234567 Email: 1510362@hcmut.edu.vn</div>
+            </div>
+            <div class="guest_input_information">
+                <h2>Thông tin khách hàng</h2>
+                <div>Quý khách có nhu cầu biết thêm về thông tin của các dịch vụ của mặt hàng của công ty, có thể để lại thông tin liên lạc. Nhân viên công ty sẽ liên hệ trong thời gian sớm nhất</div>
+                <h4>Họ và tên</h4>
+                <input type="text">
+                <h4>Số điện thoại</h4>
+                <input type="text">
+                <h4>Địa chỉ email</h4>
+                <input type="text">
+                <h4>Ghi chú</h4>
+                <textarea cols="25" rows="2"></textarea>
+            </div>
+            <div class="info_send">
+                <button>Gửi thông tin</button>
             </div>
         </div>
     </div>
