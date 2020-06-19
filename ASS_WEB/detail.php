@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="vi">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +13,29 @@
 </head>
 
 <body>
+<?php require_once('php/operation.php');
+    $title = "";
+    $price = 0;
+    $pic = "";
+    $decs = [];
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        $query = "select * from product where id= $id";
+        $data = mysqli_query($conn,$query);
+        if(!$data){
+            echo "error";
+        }else{
+            while($row = mysqli_fetch_assoc($data)){
+                $id = $row['id'];
+                $title = $row['title'];
+                $price = $row['price'];
+                $pic = $row['picture'];
+                $decs = explode(".",$row['description']);
+            }
+            
+        }
+    }
+?>
     <div class="c_header">
         <div class="container">
             <div class="top">
@@ -91,21 +116,26 @@
             </div>
             <div class="mid_left">
                 <div class="product_detail_img">
-                    <img src="images/product/1.jpg" alt="">
+                    <img src="<?php echo"$pic"?>" alt="">
                 </div>
             </div>
 
             <div class="mid_right">
-                <div class="detail_title"><h2>Dulux Weathershield Bề Mặt Mờ</h2></div>
+                <div class="detail_title"><h2><?php echo "$title"?></h2></div>
                 <div class="detail_information">
                     <h3>Thông tin sản phẩm</h3>
                     <ul>
-                        <li>Công nghệ Keep Cool ưu việt với tính năng phản xạ tia UV làm giảm nhiệt độ tường tới 5 o C</li>
+                        <!-- <li>Công nghệ Keep Cool ưu việt với tính năng phản xạ tia UV làm giảm nhiệt độ tường tới 5 o C</li>
                         <li>Chống kiềm hóa vượt trội nhờ công nghệ Alkali-Guard</li>
                         <li>Chống phai màu hiệu quả với Công nghệ ColourLock TM</li>
                         <li>Chống bám bẩn với công nghệ Dirt-Guard</li>
                         <li>Chống thấm</li>
-                        <li>Đạt chứng chỉ Xanh Singapore</li>
+                        <li>Đạt chứng chỉ Xanh Singapore</li> -->
+                        <?php 
+                        foreach ($decs as $item){
+                            echo "<li> $item</li>";
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="detail_option">

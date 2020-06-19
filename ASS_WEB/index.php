@@ -2,6 +2,8 @@
 <html lang="vi">
 <?php
     require_once('php/db.php');
+    require_once('php/operation.php');
+    require_once('php/component.php');
 ?>
 <head>
     <meta charset="UTF-8">
@@ -193,7 +195,7 @@
 
                     <div class="container-lg">
                         <div class="row">
-                            <div class="col-md-3 col-sm-6 col-12 mt-3">
+                            <!-- <div class="col-md-3 col-sm-6 col-12 mt-3">
                                 <a href="detail.php" class="product-link">
                                     <div class="product">
                                         <div class="product_img">
@@ -251,7 +253,12 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
+
+                            <?php
+                                loadHotProduct();
+                            
+                            ?>
                         </div>
                     </div>
                 </div>
