@@ -76,60 +76,30 @@
 
     <div class="c_idea_middle">
         <div class="container">
-            <h2>Các ý tưởng trang trí ngôi nhà của bạn</h2>
+            <?php 
+                if(isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    $query = "select * from idea where id = $id";
+                    $result = mysqli_query($conn, $query);
+                    if(!$result){
+                        echo "error";
+                    }
+                    else {
+                        $row = mysqli_fetch_object($result);
+                        ?>
+                            <h2><?php echo $row->title ?></h2>
+                            <img src="<?php echo $row->picture ?>" alt="" style="width:100%">
+                            <div style="margin-top: 20px;">
+                                <?php echo $row->content ?>
+                            </div>
+                        <?php
+                    }
+                }
+                
+            ?>
             
-            <div class="container">
-                <div class="row">
-                    <?php 
-                        $query = "select * from idea";
-                        $result = mysqli_query($conn, $query);
-
-                        while($row = mysqli_fetch_object($result)){
-                            ?>
-                                <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
-                                    <a href="idea_content.php?id=<?php echo $row->id ?>">
-                                        <div class="idea">
-                                            <div class="idea_img">
-                                                <img src="<?php echo $row->picture ?>" alt="">
-                                            </div>
-                                            <div class="idea_title">
-                                                <?php echo $row->title ?>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            <?php
-                        }
-                    ?>
-                    
-                </div>
-            </div>
             
-            <div class="nav_page">
-                <ul>
-                    <li>
-                        <a href="#"><div class="page_number">1</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">2</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">3</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">4</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">5</div></a>
-                    </li>
-                    <li>
-                        <div class="page_dot">...</div>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">6</div></a>
-                    </li>
-                </ul>
-            </div>
+            
         </div>
     </div>
 
