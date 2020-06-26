@@ -466,7 +466,8 @@ body {
 
 .quantity_select {
     display: flex;
-    height: 30px;
+    height: 40px !important;
+    width:100%;
 }
 
 .quantity_select button, .quantity_select input {
@@ -476,17 +477,22 @@ body {
     text-align: center;
 }
 
+.quantity_select button{
+    outline:none;
+    border:none;
+}
+
 .decrease, .increase {
-    width: 30px;
+    width: 40px;
 }
 
 .quantity {
-    width: 50px;
+    width: 100px;
+    margin: 0 5px;
 }
 
 .detail_buy_button {
     margin-top: 30px;
-    height: 50px;
 }
 
 .buy_button {
@@ -676,4 +682,11 @@ body {
 .category-nav li:hover a{
     transform: translateX(10px);
     color: #1ab1cc !important;
+}
+
+
+/* ######################detail ############################# */
+
+.detail_information ul{
+    margin-left: 40px;
 }

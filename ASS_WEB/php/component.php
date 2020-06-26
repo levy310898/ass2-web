@@ -1,7 +1,7 @@
 <?php 
-    function createProduct($title,$price,$img,$id){
+    function createProduct($title,$price,$img,$id,$class_col){
         echo <<<_END
-            <div class="col-md-3 col-sm-6 col-12 mt-3">
+            <div class="$class_col">
                 <a href="detail.php?id=$id" class="product-link">
                     <div class="product">
                         <div class="product_img">
@@ -17,3 +17,5 @@
         _END;
     }
 ?>
+
+<!--  <div class="col-md-3 col-sm-6 col-12 mt-3"> -->

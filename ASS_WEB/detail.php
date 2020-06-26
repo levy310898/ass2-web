@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="js/mmenu-light-master/dist/mmenu-light.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -114,23 +115,19 @@
                     </ul>
                 </div>
             </div>
-            <div class="mid_left">
-                <div class="product_detail_img">
-                    <img src="<?php echo"$pic"?>" alt="">
-                </div>
-            </div>
 
-            <div class="mid_right">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="product_detail_img">
+                        <img src="<?php echo"$pic"?>" alt="">
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6">
                 <div class="detail_title"><h2><?php echo "$title"?></h2></div>
                 <div class="detail_information">
                     <h3>Thông tin sản phẩm</h3>
                     <ul>
-                        <!-- <li>Công nghệ Keep Cool ưu việt với tính năng phản xạ tia UV làm giảm nhiệt độ tường tới 5 o C</li>
-                        <li>Chống kiềm hóa vượt trội nhờ công nghệ Alkali-Guard</li>
-                        <li>Chống phai màu hiệu quả với Công nghệ ColourLock TM</li>
-                        <li>Chống bám bẩn với công nghệ Dirt-Guard</li>
-                        <li>Chống thấm</li>
-                        <li>Đạt chứng chỉ Xanh Singapore</li> -->
                         <?php 
                         foreach ($decs as $item){
                             echo "<li> $item</li>";
@@ -138,6 +135,7 @@
                         ?>
                     </ul>
                 </div>
+                <!-- Nên đặt khu này là form để khi input thông tin lên thì dễ làm việc -->
                 <div class="detail_option">
                     <div class="detail_color_option">
                         <h3>Chọn màu</h3>
@@ -170,13 +168,13 @@
                         <h3>Chọn số lượng</h3>
                         <div class="quantity_select">
                             <div class="decrease">
-                                <button>-</button>
+                                <button id="decreaseQuantity">-</button>
                             </div>
                             <div class="quantity">
-                                <input type="text">
+                                <input type="text" value="1" id="quantityText">
                             </div>
                             <div class="increase">
-                                <button>+</button>
+                                <button id="increaseQuantity">+</button>
                             </div>
                         </div>
                     </div>
@@ -184,6 +182,10 @@
                 <div class="detail_buy_button">
                     <button class="buy_button"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
                 </div>
+                </div>
+            </div>
+                
+            
             </div>
 
         </div>
@@ -239,6 +241,28 @@
                         });
                 }
             );
+    </script>
+
+    <script>    
+        $(document).ready(function(){
+            $("#decreaseQuantity").click(function(){
+                console.log("click decrease");
+                if($("#quantityText").val() == "1"){
+                    console.log("quantity= " ,"1" );
+                    return;
+                }else{
+                    let quantity = parseInt($("#quantityText").val()) - 1;
+                    $("#quantityText").val(quantity);
+                }
+            });
+
+            $("#increaseQuantity").click(function(){
+                console.log("click increase");
+                let quantity = parseInt($("#quantityText").val()) + 1;
+                $("#quantityText").val(quantity);
+            });
+        });    
+
     </script>
 </body>
 

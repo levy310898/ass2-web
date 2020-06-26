@@ -256,7 +256,7 @@
                             </div> -->
 
                             <?php
-                                loadHotProduct();
+                                loadProduct("SELECT * FROM product",4);
                             
                             ?>
                         </div>

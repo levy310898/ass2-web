@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
 
+<?php
+    require_once('php/db.php');
+    require_once('php/operation.php');
+    require_once('php/component.php');
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -96,66 +102,9 @@
                     <div class="cat_title"><h2>Sản phẩm hot</h2></div>
                     <div class="container-lg">
                         <div class="row">
-                            
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-lg-4 col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="lg-block col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            <?php 
+                                loadCateGoryHotProduct();
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -163,128 +112,17 @@
 
             <div class="cat_title mt-5"><h2>Sơn nội thất</h2></div>
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php 
+                    loadProduct("select * from product where type = 1",4)
+                ?>
             </div>
 
             <div class="cat_title mt-5"><h2>Sơn ngoại thất</h2></div>
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-3 col-sm-6 col-12 mt-3">
-                    <a href="detail.php">
-                        <div class="product">
-                            <div class="product_img">
-                                <img src="images/product/1.jpg" alt="product">
-                            </div>
-                            <div class="product_info">
-                                <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                </div>
-                                <div class="product_price">50000vnd</div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php 
+                    loadProduct("select * from product where type = 2", 4)
+                ?>
             </div>
 
 
