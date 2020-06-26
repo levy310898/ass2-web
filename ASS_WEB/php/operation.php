@@ -31,20 +31,22 @@ function loadProduct($query, $limitedData){
     }
 }
 
-function loadCateGoryHotProduct(){
-    $data = getData("select * from product");
+function loadCateGoryHotProduct($query,$limited){
+    $data = getData($query);
     if($data){
         $count = 0;
         while($row =mysqli_fetch_assoc($data)){
-            if($count ==4){
+            if($limited != 0){
+                if($count ==$limited){
                 break;
+                }
             }
             if($row){
                 $id= $row['id'];
                 $title = $row['title'];
                 $price = $row['price'];
                 $img = $row['picture'];
-                if($count == 3){
+                if($count == $limited-1){
                     $class_col = "lg-block col-md-3 col-sm-6 col-12 mt-3";
                 }else{
                     $class_col = "col-lg-4 col-md-3 col-sm-6 col-12 mt-3";

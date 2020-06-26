@@ -76,7 +76,7 @@
         </div>
     </div>
 
-    <div class="c_middle">
+    <div class="c_middle mt-5">
         <div class="container-lg">
             <div class="row">
                 <div class="col-lg-3 col-md-12">
@@ -84,14 +84,11 @@
                         <ul>
                             <li><a href="?type=1">Sơn nội thất</a></li>
                             <li><a href="?type=2">Sơn ngoại thất</a></li>
-                            <li><a href="#">
+                            <li><a href="?type=3">
                                     Bột trét tường
                                 </a></li>
-                            <li><a href="#">
+                            <li><a href="?type=4">
                                     Dụng cụ sơn
-                                </a></li>
-                            <li><a href="#">
-                                    Vật liệu xây dựng khác
                                 </a></li>
                         </ul>
                     </nav>
@@ -100,14 +97,33 @@
                 </div>
 
                 <div class="col-lg-9 col-md-12">
-                    <div class="cat_title"><h2>Sản phẩm hot</h2></div>
-                    <div class="container-lg">
-                        <div class="row">
-                            <?php 
-                                loadCateGoryHotProduct();
-                            ?>
+                    <?php if(!isset($_GET["type"])){ ?>
+
+                        <div class="cat_title"><h2>Sản phẩm hot</h2></div>
+                        <div class="container-lg">
+                            <div class="row">
+                                <?php 
+                                    loadCateGoryHotProduct("select * from product",4);
+                                ?>
+                            </div>
                         </div>
-                    </div>
+                    <?php }else{
+                        $type = $_GET['type'];
+                        $type_name = ["Sơn Nội Thất","Sơn Ngoại Thất","Bột Trét Tường","Dụng Cụ Sơn"]
+                    ?>
+                        <div class="cat_title"><h2><?php $name = $type_name[$type-1];echo "$name"?></h2></div>
+                        <div class="container-lg">
+                            <div class="row">
+                                <?php 
+                                    loadCateGoryHotProduct("select * from product where type = $type", 0);
+                                ?>
+                            </div>
+                        </div>
+                    <?php
+                    } 
+                    
+                    ?>
+                    
                 </div>
             </div>
             <?php 
@@ -133,6 +149,13 @@
             <div class="row">
             <?php 
                     loadProduct("select * from product where type = 3", 4)
+                ?>
+            </div>
+
+            <div class="cat_title mt-5"><h2>Dụng cụ sơn</h2></div>
+            <div class="row">
+            <?php 
+                    loadProduct("select * from product where type = 4", 4)
                 ?>
             </div>
             

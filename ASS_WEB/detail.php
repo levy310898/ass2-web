@@ -130,7 +130,10 @@
                         <ul>
                             <?php 
                             foreach ($decs as $item){
-                                echo "<li> $item</li>";
+                                if(trim($item) != ""){
+                                    echo "<li> $item</li>";
+                                }
+                                
                             }
                             ?>
                         </ul>
