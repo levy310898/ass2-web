@@ -44,7 +44,7 @@
                 <div class="head_menu" id="my-menu">
                     <ul>
                         <li><a href="index.php">Trang chủ</a></li>
-                        <li><a href="#">Ý tưởng</a></li>
+                        <li><a href="idea.php">Ý tưởng</a></li>
                         <li><a href="category.php">Danh mục</a>
                             <ul id="submenu">
                                 <li><a href="#">
@@ -88,8 +88,8 @@
                         $row = mysqli_fetch_object($result);
                         ?>
                             <h2><?php echo $row->title ?></h2>
-                            <img src="<?php echo $row->picture ?>" alt="" style="width:100%">
-                            <div style="margin-top: 20px;">
+                            <img src="<?php echo $row->picture ?>" alt="" style="width:100%; margin-top:20px;">
+                            <div style="margin: 0 auto;margin-top: 20px;width: 95%;text-align: justify;">
                                 <?php echo $row->content ?>
                             </div>
                         <?php
