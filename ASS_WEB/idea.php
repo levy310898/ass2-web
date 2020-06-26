@@ -44,7 +44,7 @@
                 <div class="head_menu" id="my-menu">
                     <ul>
                         <li><a href="index.php">Trang chủ</a></li>
-                        <li><a href="#">Ý tưởng</a></li>
+                        <li><a href="idea.php">Ý tưởng</a></li>
                         <li><a href="category.php">Danh mục</a>
                             <ul id="submenu">
                                 <li><a href="#">
