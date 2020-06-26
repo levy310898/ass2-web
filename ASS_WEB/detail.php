@@ -124,65 +124,75 @@
                 </div>
 
                 <div class="col-sm-12 col-md-6">
-                <div class="detail_title"><h2><?php echo "$title"?></h2></div>
-                <div class="detail_information">
-                    <h3>Thông tin sản phẩm</h3>
-                    <ul>
-                        <?php 
-                        foreach ($decs as $item){
-                            echo "<li> $item</li>";
-                        }
-                        ?>
-                    </ul>
-                </div>
-                <!-- Nên đặt khu này là form để khi input thông tin lên thì dễ làm việc -->
-                <div class="detail_option">
-                    <div class="detail_color_option">
-                        <h3>Chọn màu</h3>
+                    <div class="detail_title"><h2><?php echo "$title"?></h2></div>
+                    <div class="detail_information">
+                        <h3>Thông tin sản phẩm</h3>
                         <ul>
-                            <li>
-                                <button class="black"></button>
-                            </li>
-                            <li>
-                                <button class="white"></button>
-                            </li>
-                            <li>
-                                <button class="red"></button>
-                            </li>
-                            <li>
-                                <button class="yellow"></button>
-                            </li>
-                            <li>
-                                <button class="blue"></button>
-                            </li>
-                            <li>
-                                <button class="green"></button>
-                            </li>
-                            <li>
-                                <button class="purple"></button>
-                            </li>
+                            <?php 
+                            foreach ($decs as $item){
+                                echo "<li> $item</li>";
+                            }
+                            ?>
                         </ul>
+                    </div>
+                <!-- Nên đặt khu này là form để khi input thông tin lên thì dễ làm việc -->
+                    
+
+                    
+                <form class="form-detail" onsubmit="return false">
+                    <h3 class="my-4">Chọn màu</h3>
+                    <div class="form__group">
+                        <div class="form__radio-group">
+                            <input type="radio" class="form__radio-input" id="radio-blue" value="blue" name="color-choose">
+                            <label for="radio-blue" class="form__radio-label">
+                                <span class="form__radio-button form__radio-button--blue"></span>
+                            </label>
+                        </div>
+                        <div class="form__radio-group">
+                            <input type="radio" class="form__radio-input" id="radio-yellow" value="yellow" name="color-choose">
+                            <label for="radio-yellow" class="form__radio-label">
+                                <span class="form__radio-button form__radio-button--yellow"></span>   
+                            </label>
+                        </div>
+
+                        <div class="form__radio-group">
+                            <input type="radio" class="form__radio-input" id="radio-green" value="green" name="color-choose">
+                            <label for="radio-green" class="form__radio-label">
+                                <span class="form__radio-button form__radio-button--green"></span>   
+                            </label>
+                        </div>
+
+                        <div class="form__radio-group">
+                            <input type="radio" class="form__radio-input" id="radio-gray" value="gray" name="color-choose">
+                            <label for="radio-gray" class="form__radio-label">
+                                <span class="form__radio-button form__radio-button--gray"></span>   
+                            </label>
+                        </div>
                     </div>
 
                     <div class="detail_quantity_option">
-                        <h3>Chọn số lượng</h3>
-                        <div class="quantity_select">
-                            <div class="decrease">
-                                <button id="decreaseQuantity">-</button>
-                            </div>
-                            <div class="quantity">
-                                <input type="text" value="1" id="quantityText">
-                            </div>
-                            <div class="increase">
-                                <button id="increaseQuantity">+</button>
+                            <h3 class="my-4">Chọn số lượng</h3>
+                            <div class="quantity_select">
+                                <div class="decrease">
+                                    <button id="decreaseQuantity">-</button>
+                                    <!-- <div id="decreaseQuantity">-</div> -->
+                                </div>
+                                <div class="quantity">
+                                    <input type="text" value="1" id="quantityText">
+                                </div>
+                                <div class="increase">
+                                    <button id="increaseQuantity">+</button>
+                                    <!-- <div id="increaseQuantity">+</div> -->
+                                </div>
                             </div>
                         </div>
+                    
+                    <div class="detail_buy_button">
+                        <button type="submit" class="buy_button"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
                     </div>
+                </form>
                 </div>
-                <div class="detail_buy_button">
-                    <button class="buy_button"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
-                </div>
-                </div>
+
             </div>
                 
             
