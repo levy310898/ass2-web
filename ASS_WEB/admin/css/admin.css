@@ -1,0 +1,45 @@
+.btn-box button{
+    margin: 1em 0.6em;
+    padding: 0.5em 2em;
+}
+
+.btn-transfer{
+    border:none;
+    outline:none;
+    background-color: transparent;
+}
+
+.data-edit,.data-del{
+    cursor: pointer;
+}
+
+.data-edit{
+    color:rgb(145, 215, 233);
+    transition: all .2s linear;
+}
+.data-edit:hover{
+    color: rgb(53, 176, 207);
+}
+
+.data-del{
+    color:rgb(231, 136, 99);
+    transition: all .2s linear;
+}
+.data-del:hover{
+    color:rgb(216, 91, 41);
+}
+
+.success{
+    background-color: lightgreen;
+    padding: 1em;
+}
+
+.error{
+    background-color: tomato;
+    padding: 1em;
+}
+
+.primary{
+    background-color: lightseagreen;
+    padding: 1em;
+}

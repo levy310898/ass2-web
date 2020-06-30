@@ -57,4 +57,41 @@ function loadCateGoryHotProduct($query,$limited){
         }
     }
 }
+
+function adminType(){
+    if(!isset($_GET['type'])){
+        return "user";
+    }else{
+        return $_GET['type'];
+    }
+}
+
+function loadTableData($query){
+    $data = getData($query);
+    if($data){
+        $count = 0;
+        while($row = mysqli_fetch_assoc($data)){
+            if($count == 10) break;
+            $id = $row['id'];
+            $title = $row['title'];
+            $desc = $row['description'];
+            $type = $row['type'];
+            $price = $row['price'];
+            $pic = $row['picture'];
+            echo <<<_END
+            <tr>
+                <td data-id="$id"> $id </td>
+                <td data-id="$id"> $title </td>
+                <td data-id="$id"> $desc </td>
+                <td data-id="$id"> $type </td>
+                <td data-id="$id"> $price </td>
+                <td data-id="$id"> $pic </td>
+                <td ><i data-id="$id" class="data-edit fas fa-edit"></i></td>
+                <td><button name="data-del" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
+            </tr>
+            _END;
+            $count ++;
+        }
+    }
+}
 ?> 
