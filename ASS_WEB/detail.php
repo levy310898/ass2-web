@@ -88,7 +88,7 @@
                         <li><a href="contact.php">Liên hệ</a></li>
                         <li class="li_signup"><a href="signup.php">Đăng kí</a></li>
                         <li class="li_signin"><a href="signin.php">Đăng nhập</a></li>
-                        <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
+                        <li><a href="cart.php"><i class="fas fa-cart-plus"></i></a></li>
                     </ul>
                 </div>
             </div>
