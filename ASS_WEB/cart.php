@@ -79,50 +79,52 @@
             <h2>Giỏ hàng</h2>
             <div class="cart_list_product">
                 <ul>
-                    <li>
-                        <div class="cart_product">
-                            <div class="cart_product_img">
-                                <img src="pictures/1.jpg" alt="">
-                            </div>
-                            
-                            <div class="cart_product_info">
-                                <div class="cart_pro_name">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel nesciunt consequatur, accusamus mo
-                                </div>
-                                <div class="cart_pro_amount">
-                                    Số lượng: 20
-                                </div>
-                                <div class="cart_pro_price">
-                                    Số tiền: 20
-                                </div>
-                                <div class="cart_pro_delete">
-                                    <a href="#">Xoá</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <?php
+                        $query = "select c.id, c.amount, c.price, p.title, p.picture from cart c inner join product p on c.product_id = p.id";
+                        $result = mysqli_query($conn, $query);
+                        $total = 0;
 
-                    <li>
-                        <div class="cart_product">
-                            <div class="cart_product_img">
-                                <img src="pictures/1.jpg" alt="">
-                            </div>
-                            
-                        </div>
-                    </li>
+                        while($row = mysqli_fetch_object($result)){
+                            ?>
+                                <li>
+                                    <div class="cart_product">
+                                        <div class="cart_product_img">
+                                            <img src="<?php echo $row->picture; ?>" alt="">
+                                        </div>
+                                        
+                                        <div class="cart_product_info">
+                                            <div class="cart_pro_name">
+                                                <?php echo $row->title; ?>
+                                            </div>
+                                            <div class="cart_pro_amount">
+                                                Số lượng: <?php echo $row->amount; ?>
+                                            </div>
+                                            <div class="cart_pro_price">
+                                                Số tiền: <?php echo $row->price; ?>
+                                            </div>
+                                            <div class="cart_pro_delete">
+                                                <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xoá</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php
+                            $total = $total + $row->price;
+                        }
+                    ?>              
                 </ul>
             </div>
 
             <div class="cart_total">
                 <div class="ct_price">
                     <div class="tamtinh">
-                        <h5>Tạm tính:</h5> <h4>300000000</h4>
+                        <h5>Tạm tính:</h5> <h4><?php echo $total; ?></h4>
                     </div>
                     <div class="thue">
-                        <h5>Thuế:</h5> <h4>30000</h4>
+                        <h5>Thuế:</h5> <h4><?php $tax = $total * 0.1; echo $tax; ?></h4>
                     </div>
                     <div class="thanhtien">
-                        <h5>Thành tiền:</h5> <h4>400000000</h4>
+                        <h5>Thành tiền:</h5> <h4><?php echo $total + $tax; ?></h4>
                     </div>
                 </div>
                 <div class="ct_pay">
