@@ -771,3 +771,54 @@ body {
     background-color: #A9A9A9;
   }
 
+/* ######################cart ############################# */
+
+.cart_list_product li {
+    list-style: none;
+}
+
+.cart_product {
+    height: 160px;
+    display: flex;
+}
+
+.cart_product_info {
+    margin-top: 20px;
+}
+
+.cart_pro_name {
+    font-size: 20px;
+}
+
+.cart_pro_delete a {
+    color: #1ab1cc;
+}
+
+.cart_product_img {
+    width: 16%;
+}
+
+.cart_product_img img {
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.cart_total {
+    width: 30%;
+}
+
+.tamtinh, .thue, .thanhtien {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.ct_price h4 {
+    margin-left: auto;
+}
+
+.thanhtien {
+    border-top: 1px solid black;
+    margin-top: 10px;
+}
