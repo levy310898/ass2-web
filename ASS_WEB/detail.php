@@ -32,6 +32,7 @@
                 $price = $row['price'];
                 $pic = $row['picture'];
                 $decs = explode(".",$row['description']);
+                $type = $row['type'];
             }
             
         }
@@ -110,7 +111,17 @@
                             >
                         </li>
                         <li>
-                            <a href="#">Sơn nội thất</a>
+                            <a href="./category.php?type=<?php echo $type; ?>"><?php
+                                if ($type == 1){
+                                    echo "Sơn nội thất";
+                                }elseif ($type == 2){
+                                    echo "Sơn ngoại thất";
+                                }elseif ($type == 3){
+                                    echo "Bột trét tường";
+                                }else {
+                                    echo "Dụng cụ sơn";
+                                }
+                            ?></a>
                         </li>
                     </ul>
                 </div>
