@@ -775,6 +775,7 @@ body {
 
 .cart_list_product li {
     list-style: none;
+    margin-top: 30px;
 }
 
 .cart_product {
@@ -795,7 +796,7 @@ body {
 }
 
 .cart_product_img {
-    width: 16%;
+    width: 20%;
 }
 
 .cart_product_img img {
@@ -805,6 +806,7 @@ body {
 }
 
 .cart_total {
+    margin-top: 30px;
     width: 30%;
 }
 

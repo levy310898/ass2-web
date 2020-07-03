@@ -80,7 +80,7 @@
             <div class="cart_list_product">
                 <ul>
                     <?php
-                        $query = "select c.id, c.amount, c.price, p.title, p.picture from cart c inner join product p on c.product_id = p.id";
+                        $query = "select c.id, c.amount, c.price, p.title, p.picture, c.p_option from cart c inner join product p on c.product_id = p.id";
                         $result = mysqli_query($conn, $query);
                         $total = 0;
 
@@ -98,6 +98,9 @@
                                             </div>
                                             <div class="cart_pro_amount">
                                                 Số lượng: <?php echo $row->amount; ?>
+                                            </div>
+                                            <div class="cart_pro_option">
+                                                Option: <?php echo $row->p_option; ?>
                                             </div>
                                             <div class="cart_pro_price">
                                                 Số tiền: <?php echo $row->price; ?>
