@@ -38,9 +38,21 @@
     #button
     function buttonElement($btnid,$styleclass,$text,$name,$attr){
         $btn = <<<_END
-        <button name="$name" $attr class="$styleclass" id="$btnid">$text</button>
+        <button type="submit" name="$name" $attr class="$styleclass" id="$btnid">$text</button>
         _END;
         echo $btn;
+    }
+
+    #messages
+    function textNode($classname,$smg){
+        // $element = "<h6 class = \"$classname\">$smg</h6>";
+        $element = <<<_END
+            <div class="alert $classname alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            $smg
+            </div>
+        _END;
+        echo $element;
     }
 ?>
 

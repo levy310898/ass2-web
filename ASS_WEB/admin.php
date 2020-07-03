@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-  require_once('../php/db.php');
-  require_once('../php/operation.php');
-  require_once('../php/component.php');
-  require_once('../php/pagination.php');
+  require_once('php/db.php');
+  require_once('php/operation.php');
+  require_once('php/component.php');
+  require_once('php/pagination.php');
+  require_once('php/picture.php');
 ?>
 <head>
 
@@ -17,12 +18,12 @@
   <title>Admin</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link href="./admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="./admin/css/admin.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="./admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -200,17 +201,21 @@
 
           <div class="row">
             <div class="col-md-8 col-lg-6 offset-lg-3 offset-md-2 col-sm-12 offset-sm-0">
-              <form action="" method = "POST">
+              <form method = "POST" enctype="multipart/form-data">
                 <?php 
                   inputElement('product_id','Enter Id:','productId',"","readonly");
                   inputElement('product_title','Enter Title:','productTitle',"","");
                   textareaElement('product_desc','Enter Description:','productDesc',"","");
                   inputElement('product_type','Enter Type:','productType',"","");
                   inputElement('product_price','Enter Price:','productPrice',"","");
-                  inputElement('product_img','Enter img:','productImg',"","");
+                  inputElement('product_img','Enter img:','productImg',"","hidden");
                 ?>
+                <div>
+                  <img id="imgDataInput" width="200px">
+                </div>
+
                 <div class="form-group">
-                  <input type="file" class="form-control-file border" name="img_dir">
+                  <input type="file" name="file" class="form-control-file border">
                 </div>
 
                 <div class="d-flex justify-content-center btn-box">
@@ -227,6 +232,7 @@
           <div class="message-box">
                   <?php 
                     if(isset($_POST['btn_add'])){
+                      $file = $_FILES['file'];
                       $messages = addData();
                       textNode($messages[0],$messages[1]);
                     }
@@ -248,8 +254,6 @@
             <?php 
               $total_page = getTotalPage("product");
               $current_page = getCurrentPage();
-              echo "total page = $total_page \n";
-              echo "current page = $current_page";
               if($current_page > $total_page){
                 $current_page = $total_page;
               }else if ($current_page < 1){
@@ -257,7 +261,6 @@
               }
 
               $start_data = ($current_page -1) * $limit_data_table;
-              echo "start data: $start_data";
               $data_table_query = "SELECT * FROM product LIMIT $start_data, $limit_data_table";
             ?>
             <div class="d-flex table-data">
@@ -369,23 +372,23 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="admin/vendor/jquery/jquery.min.js"></script>
+  <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <script src="admin/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <script src="admin/js/demo/chart-area-demo.js"></script>
+  <script src="admin/js/demo/chart-pie-demo.js"></script>
   
-  <script src="js/main.js"></script>
+  <script src="admin/js/main.js"></script>
 </body>
 
 </html>

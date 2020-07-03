@@ -16,6 +16,8 @@ $('.data-edit').click(e=>{
     type.val(textvalues[3]);
     price.val(textvalues[4]);
     img.val(textvalues[5]);
+    console.log("hello img");
+    document.getElementById("imgDataInput").src =textvalues[5].trim();
 })
 
 function displayData(e){
