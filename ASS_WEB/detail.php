@@ -19,6 +19,7 @@
     $price = 0;
     $pic = "";
     $decs = [];
+    $id = -1;
     if(isset($_GET['id'])){
         $id = $_GET['id'];
         $query = "select * from product where id= $id";
@@ -32,6 +33,7 @@
                 $price = $row['price'];
                 $pic = $row['picture'];
                 $decs = explode(".",$row['description']);
+                $type = $row['type'];
             }
             
         }
@@ -88,7 +90,7 @@
                         <li><a href="contact.php">Liên hệ</a></li>
                         <li class="li_signup"><a href="signup.php">Đăng kí</a></li>
                         <li class="li_signin"><a href="signin.php">Đăng nhập</a></li>
-                        <li><a href="#"><i class="fas fa-cart-plus"></i></a></li>
+                        <li><a href="cart.php"><i class="fas fa-cart-plus"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -110,7 +112,17 @@
                             >
                         </li>
                         <li>
-                            <a href="#">Sơn nội thất</a>
+                            <a href="./category.php?type=<?php echo $type; ?>"><?php
+                                if ($type == 1){
+                                    echo "Sơn nội thất";
+                                }elseif ($type == 2){
+                                    echo "Sơn ngoại thất";
+                                }elseif ($type == 3){
+                                    echo "Bột trét tường";
+                                }else {
+                                    echo "Dụng cụ sơn";
+                                }
+                            ?></a>
                         </li>
                     </ul>
                 </div>
@@ -142,7 +154,7 @@
                     
 
                     
-                <form class="form-detail" onsubmit="return false">
+                <form class="form-detail" method="POST">
                     <h3 class="my-4">Chọn màu</h3>
                     <div class="form__group">
                         <div class="form__radio-group">
@@ -181,7 +193,7 @@
                                     <!-- <div id="decreaseQuantity">-</div> -->
                                 </div>
                                 <div class="quantity">
-                                    <input type="text" value="1" id="quantityText">
+                                    <input type="text" value="1" id="quantityText" name="amount">
                                 </div>
                                 <div class="increase">
                                     <button id="increaseQuantity">+</button>
@@ -191,7 +203,7 @@
                         </div>
                     
                     <div class="detail_buy_button">
-                        <button type="submit" class="buy_button"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
+                        <button type="submit" class="buy_button" name="btn_buy"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</button>
                     </div>
                 </form>
                 </div>
@@ -266,6 +278,7 @@
                 }else{
                     let quantity = parseInt($("#quantityText").val()) - 1;
                     $("#quantityText").val(quantity);
+                    return false;
                 }
             });
 
@@ -273,10 +286,37 @@
                 console.log("click increase");
                 let quantity = parseInt($("#quantityText").val()) + 1;
                 $("#quantityText").val(quantity);
+                return false;
             });
         });    
 
     </script>
+
+    <?php 
+    function addCart(){
+        $option = "";
+        if(isset($_POST["color-choose"])){
+            $option = $_POST["color-choose"];
+        }
+
+        if ($option == ""){
+            ?>
+                <script>alert("Chưa chọn màu")</script>
+            <?php
+            return false;
+        }
+
+        global $id, $price, $conn;
+        $amount = (int) $_POST["amount"];
+        $query = "insert into cart (product_id, amount, price, p_option) values ($id, $amount, $price * $amount, '$option')";
+
+        mysqli_query($conn, $query);
+    }
+
+    if(isset($_POST['btn_buy'])){
+        addCart();
+    }
+    ?>
 </body>
 
 </html>

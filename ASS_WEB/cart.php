@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ý tưởng</title>
+    <title>Giỏ hàng</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="js/mmenu-light-master/dist/mmenu-light.css">
@@ -74,61 +74,65 @@
         </div>
     </div>
 
-    <div class="c_idea_middle">
+    <div class="c_cart_middle">
         <div class="container">
-            <h2>Các ý tưởng trang trí ngôi nhà của bạn</h2>
-            
-            <div class="container">
-                <div class="row">
-                    <?php 
-                        $query = "select * from idea";
+            <h2>Giỏ hàng</h2>
+            <div class="cart_list_product">
+                <ul>
+                    <?php
+                        $query = "select c.id, c.amount, c.price, p.title, p.picture, c.p_option from cart c inner join product p on c.product_id = p.id";
                         $result = mysqli_query($conn, $query);
+                        $total = 0;
 
                         while($row = mysqli_fetch_object($result)){
                             ?>
-                                <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
-                                    <a href="idea_content.php?id=<?php echo $row->id ?>">
-                                        <div class="idea">
-                                            <div class="idea_img">
-                                                <img src="<?php echo $row->picture ?>" alt="">
+                                <li>
+                                    <div class="cart_product">
+                                        <div class="cart_product_img">
+                                            <img src="<?php echo $row->picture; ?>" alt="">
+                                        </div>
+                                        
+                                        <div class="cart_product_info">
+                                            <div class="cart_pro_name">
+                                                <?php echo $row->title; ?>
                                             </div>
-                                            <div class="idea_title">
-                                                <?php echo $row->title ?>
+                                            <div class="cart_pro_amount">
+                                                Số lượng: <?php echo $row->amount; ?>
+                                            </div>
+                                            <div class="cart_pro_option">
+                                                Option: <?php echo $row->p_option; ?>
+                                            </div>
+                                            <div class="cart_pro_price">
+                                                Số tiền: <?php echo $row->price; ?>
+                                            </div>
+                                            <div class="cart_pro_delete">
+                                                <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xoá</a>
                                             </div>
                                         </div>
-                                    </a>
-                                </div>
+                                    </div>
+                                </li>
                             <?php
+                            $total = $total + $row->price;
                         }
-                    ?>
-                    
-                </div>
-            </div>
-            
-            <div class="nav_page">
-                <ul>
-                    <li>
-                        <a href="#"><div class="page_number">1</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">2</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">3</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">4</div></a>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">5</div></a>
-                    </li>
-                    <li>
-                        <div class="page_dot">...</div>
-                    </li>
-                    <li>
-                        <a href="#"><div class="page_number">6</div></a>
-                    </li>
+                    ?>              
                 </ul>
+            </div>
+
+            <div class="cart_total">
+                <div class="ct_price">
+                    <div class="tamtinh">
+                        <h5>Tạm tính:</h5> <h4><?php echo $total; ?></h4>
+                    </div>
+                    <div class="thue">
+                        <h5>Thuế:</h5> <h4><?php $tax = $total * 0.1; echo $tax; ?></h4>
+                    </div>
+                    <div class="thanhtien">
+                        <h5>Thành tiền:</h5> <h4><?php echo $total + $tax; ?></h4>
+                    </div>
+                </div>
+                <div class="ct_pay">
+                    <button>Thanh toán</button>
+                </div>
             </div>
         </div>
     </div>
