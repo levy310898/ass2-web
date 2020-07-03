@@ -75,7 +75,7 @@
     </div>
 
     <div class="c_cart_middle">
-        <div class="container">
+        <div class="container-lg">
             <h2>Giỏ hàng</h2>
             <div class="cart_list_product">
                 <ul>
@@ -106,7 +106,7 @@
                                                 Số tiền: <?php echo $row->price; ?>
                                             </div>
                                             <div class="cart_pro_delete">
-                                                <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xoá</a>
+                                                <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xóa</a>
                                             </div>
                                         </div>
                                     </div>

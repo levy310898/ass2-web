@@ -785,6 +785,7 @@ body {
 
 .cart_product_info {
     margin-top: 20px;
+    flex-grow: 1;
 }
 
 .cart_pro_name {
@@ -792,11 +793,11 @@ body {
 }
 
 .cart_pro_delete a {
-    color: #1ab1cc;
+    color: #1ab1cc !important;
 }
 
 .cart_product_img {
-    width: 20%;
+    width: 200px;
 }
 
 .cart_product_img img {

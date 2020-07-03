@@ -170,7 +170,8 @@
 
     .cart_product_img {
         height: 100%;
-        width: auto;
+        width: 160px;
+        margin-right:20px;
     }
 
     .cart_product_info {
@@ -346,7 +347,7 @@
 
     .cart_product_img {
         height: 90%;
-        width: auto;
+        width: 160px;
     }
 
     .cart_product_info {
