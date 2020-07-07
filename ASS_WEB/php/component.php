@@ -54,6 +54,33 @@
         _END;
         echo $element;
     }
+
+    function selectElement(){
+        $element = <<<_END
+        <div class="form-group">
+                  <select class="form-control" id="inputType" name="input_type">
+                    <option value = "1" selected hidden>Sơn nội thất</option>
+                    <option value = "1">Sơn nội thất</option>
+                    <option value = "2">Sơn ngoại thất</option>
+                    <option value = "3">Bột trét tường</option>
+                    <option value = "4">Dụng cụ sơn</option>
+                  </select>
+                </div>
+        _END;
+        echo $element;
+    }
+
+    function imageElement(){
+        $element = <<<_END
+                <div class="form-group">
+                  <div>
+                    <img id="imgDataInput" width="200px">
+                  </div>
+                  <input type="file" name="file" class="form-control-file border">
+                </div>
+        _END;
+        echo $element;
+    }
 ?>
 
 <!--  <div class="col-md-3 col-sm-6 col-12 mt-3"> -->

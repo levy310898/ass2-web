@@ -7,7 +7,7 @@
         // $fileName = $file['name'];
         if($fileName == ""){
             if($request == "add"){
-                return [true,"pictures/default.jpg"];
+                return [true,$dir."default.jpg"];
             }
             if($request == "update"){
                 return [true,""];

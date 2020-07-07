@@ -6,6 +6,7 @@
   require_once('php/component.php');
   require_once('php/pagination.php');
   require_once('php/picture.php');
+  require_once('php/interface.php');
 ?>
 <head>
 
@@ -39,7 +40,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -50,21 +51,8 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item
-        <?php 
-          if($page_type=='user'){
-            echo "active";
-          }
-        ?>">
-        <a class="nav-link" href="?type=user">
-          <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-          <i class="fa fa-address-book"></i>
-          <span>User</span>
-        </a>
-      </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
+      
 
       <!-- Product item -->
       <li class="nav-item <?php 
@@ -73,7 +61,7 @@
           }
       ?>">
         <a class="nav-link" href="?type=product">
-          <i class="fa fa-shopping-cart"></i>
+          <i class="fas fa-box"></i>
           <span>Product</span></a>
       </li>
 
@@ -86,8 +74,24 @@
           }
       ?>">
         <a class="nav-link" href="?type=idea">
-          <i class="fa fa-shopping-cart"></i>
+          <i class="far fa-newspaper"></i>
           <span>Idea</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <li class="nav-item
+        <?php 
+          if($page_type=='user'){
+            echo "active";
+          }
+        ?>">
+        <a class="nav-link" href="?type=user">
+          <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
+          <i class="fa fa-address-book"></i>
+          <span>User</span>
+        </a>
       </li>
 
       <!-- Divider -->
@@ -186,7 +190,7 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">
+            <h1 class="h3 mb-0 text-gray" id = "tableName">
                 <?php
                   if($page_type=='user'){
                     echo "User control";
@@ -202,23 +206,13 @@
           <div class="row">
             <div class="col-md-8 col-lg-6 offset-lg-3 offset-md-2 col-sm-12 offset-sm-0">
               <form method = "POST" enctype="multipart/form-data">
-                <?php 
-                  inputElement('product_id','Enter Id:','productId',"","readonly");
-                  inputElement('product_title','Enter Title:','productTitle',"","");
-                  textareaElement('product_desc','Enter Description:','productDesc',"","");
-                  inputElement('product_type','Enter Type:','productType',"","");
-                  inputElement('product_price','Enter Price:','productPrice',"","");
-                  inputElement('product_img','Enter img:','productImg',"","hidden");
+                <?php
+                #show the input element which is dynamic with each page like user , product, idea ,... 
+                  showInput($page_type);
                 ?>
-                <div>
-                  <img id="imgDataInput" width="200px">
-                </div>
-
-                <div class="form-group">
-                  <input type="file" name="file" class="form-control-file border">
-                </div>
 
                 <div class="d-flex justify-content-center btn-box">
+                <!-- print the button add , update and delete all -->
                     <?php 
                         buttonElement("btnAdd","btn btn-success mr-2","<i class=\"fa fa-plus\"></i>","btn_add","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Add'");
                         buttonElement("btnUpdate","btn btn-warning mr-2 text-light","<i class=\"fa fa-pen\"></i>","btn_update","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Update'");
@@ -233,26 +227,32 @@
                   <?php 
                     if(isset($_POST['btn_add'])){
                       $file = $_FILES['file'];
-                      $messages = addData();
+                      $messages = addData($page_type);
                       textNode($messages[0],$messages[1]);
                     }
 
                     if(isset($_POST['btn_update'])){
-                      $messages = updateData();
+                      $messages = updateData($page_type);
                       textNode($messages[0],$messages[1]);
                     }
 
                     if(isset($_POST['data_delete'])){
                       $id = $_POST['data_delete'];
-                      $messages = deleteData($id);
+                      $messages = deleteData($id,$page_type);
                       textNode($messages[0],$messages[1]);
                     }
+
+                    if(isset($_POST['btn_del_all'])){
+                      $messages = deleteAllData($page_type);
+                      textNode($messages[0],$messages[1]);
+                    }
+                    
                   ?>
           </div>
           <form action="" method = "POST">
             <!-- pagination part -->
             <?php 
-              $total_page = getTotalPage("product");
+              $total_page = getTotalPage("$page_type");
               $current_page = getCurrentPage();
               if($current_page > $total_page){
                 $current_page = $total_page;
@@ -261,26 +261,19 @@
               }
 
               $start_data = ($current_page -1) * $limit_data_table;
-              $data_table_query = "SELECT * FROM product LIMIT $start_data, $limit_data_table";
+              $data_table_query = "SELECT * FROM $page_type LIMIT $start_data, $limit_data_table";
             ?>
-            <div class="d-flex table-data">
+            <div class="d-flex table-data table-max-height">
               <table class="table table-striped table-dark table-bordered text-center">
                     <thead class="thead-dark">
-                        <tr>
-                          <th>Id</th>
-                          <th>title</th>
-                          <th>decription</th>
-                          <th>type</th>
-                          <th>price</th>
-                          <th>image</th>
-                          <th>Edit</th>
-                          <th>Delete</th>
-                        </tr>
+                        <?php 
+                          loadCategoryData($page_type);
+                        ?>
                     </thead>
                       
                     <tbody id="tbody">
                       <?php 
-                        loadTableData($data_table_query);
+                        loadDataTable($data_table_query,$page_type);
                       ?>
                     </tbody>
               </table>

@@ -6,11 +6,19 @@ require_once('picture.php');
 function getData($query){
     global $conn;
     $data = mysqli_query($conn, $query);
-    if(mysqli_num_rows($data) >0){
-        return $data;
+    if($data){
+        if(mysqli_num_rows($data) && mysqli_num_rows($data) >0){
+            return $data;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
     }
+    
 }
 
+# load product in category
 function loadProduct($query, $limitedData){
     $data = getData($query);
     if($data){
@@ -58,43 +66,18 @@ function loadCateGoryHotProduct($query,$limited){
         }
     }
 }
-
+#########################admin site#####################################
 function adminType(){
     if(!isset($_GET['type'])){
-        return "user";
+        return "product";
     }else{
         return $_GET['type'];
     }
 }
 
-function loadTableData($query){
-    $data = getData($query);
-    if($data){
-        $count = 0;
-        while($row = mysqli_fetch_assoc($data)){
-            // if($count == 10) break;
-            $id = $row['id'];
-            $title = $row['title'];
-            $desc = $row['description'];
-            $type = $row['type'];
-            $price = $row['price'];
-            $pic = $row['picture'];
-            echo <<<_END
-            <tr>
-                <td data-id="$id"> $id </td>
-                <td data-id="$id"> $title </td>
-                <td data-id="$id"> $desc </td>
-                <td data-id="$id"> $type </td>
-                <td data-id="$id"> $price </td>
-                <td data-id="$id"> $pic </td>
-                <td ><i data-id="$id" class="data-edit fas fa-edit"></i></td>
-                <td><button name="data_delete" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
-            </tr>
-            _END;
-            $count ++;
-        }
-    }
-}
+
+
+
 
 # get img link
 function getImg($dir,$request){
@@ -105,13 +88,25 @@ function getImg($dir,$request){
     return getImgLink($dir,$fileName,$fileTmpName,$fileError,$request);
 }
 
-function addData(){
+//////////////////////////////// adding data //////////////////////////////////
+function addData($type){
+    if($type=='user'){
+        return addProductData();
+    }else if($type=='product'){
+        return addProductData();
+    }else if($type =='idea'){
+        return addIdeaData();
+    }
+}
+
+
+function addProductData(){
     global $conn;
     #catch 3 input data
-    $title = $_POST['product_title'];
-    $desc = $_POST['product_desc'];
-    $type = $_POST['product_type'];
-    $price = $_POST['product_price'];
+    $title = $_POST['input_title'];
+    $desc = $_POST['input_desc'];
+    $type = $_POST['input_type'];
+    $price = $_POST['input_price'];
 
     #picture
     
@@ -135,17 +130,48 @@ function addData(){
     }
 }
 
-function updateData(){
+function addIdeaData(){
+    global $conn;
+    $title = $_POST['input_title'];
+    $content = $_POST['input_content'];
+    $isPic = getImg("./pictures/ideas/","add");
+    if($isPic[0] == true){
+        $pic = $isPic[1];
+    }else{
+        return ["alert-danger",$isPic[1]];
+    }
+
+    $sql = "INSERT INTO idea (title,content,picture) VALUE('$title','$content','$pic')";
+    if(mysqli_query($conn,$sql)){
+        return ["alert-info","Insert data successfully"];
+    }else{
+        return ["alert-danger","ERROR Insert"];
+    }
+}
+
+////////////////////////////////updateData///////////////////////////////////////////
+
+function updateData($type){
+    if($type=='user'){
+        return updateProductData();
+    }else if($type=='product'){
+        return updateProductData();
+    }else if($type =='idea'){
+        return updateIdeaData();
+    }
+}
+
+function updateProductData(){
     global $conn; 
-    $id = (int)trim($_POST['product_id']);
-    $title = $_POST['product_title'];
-    $desc = $_POST['product_desc'];
-    $type = (int)trim($_POST['product_type']);
-    $price = (double)trim($_POST['product_price']);
+    $id = (int)trim($_POST['input_id']);
+    $title = $_POST['input_title'];
+    $desc = $_POST['input_desc'];
+    $type = (int)trim($_POST['input_type']);
+    $price = (double)trim($_POST['input_price']);
     $isPic = getImg("./pictures/","update");
     if($isPic[0] == true){
         if($isPic[1] == ""){
-            $pic = $_POST['product_img'];
+            $pic = $_POST['input_img'];
         }else{
             $pic = $isPic[1];
         }
@@ -165,9 +191,39 @@ function updateData(){
     }
 }
 
-function deleteData($id){
+function updateIdeaData(){
     global $conn;
-    $sql = "DELETE FROM product WHERE id = $id";
+    $id = (int)trim($_POST['input_id']);
+    $title = $_POST['input_title'];
+    $content = $_POST["input_content"];
+    $isPic = getImg("./pictures/ideas","update");
+    if($isPic[0] == true){
+        if($isPic[1] == ""){
+            $pic = $_POST['input_img'];
+        }else{
+            $pic = $isPic[1];
+        }
+    }else{
+        return ["alert-danger",$isPic[1]];
+    }
+    $sql = "UPDATE idea SET 
+    title = '$title',content = '$content',picture = '$pic' where id = '$id'";
+    if(mysqli_query($conn,$sql)){
+        //textNode("primary","Insert data successfully");
+        return ["alert-info","Update data succesfully"];
+    }else{
+         //textNode("error","ERROR");
+        return ["alert-danger","ERROR Update"];
+    }
+}
+
+
+//////////////////////////////////////delete data ////////////////////////////////////////////
+
+
+function deleteData($id,$table_name){
+    global $conn;
+    $sql = "DELETE FROM $table_name WHERE id = $id";
     if(mysqli_query($conn,$sql)){
         return ["alert-info","Delete data successfully"];
     }else{
@@ -175,15 +231,15 @@ function deleteData($id){
     }
 }
 
-// function deleteAllData(){
-//     global $conn;
-//     $sql = "DELETE  FROM cars";
-//     if(mysqli_query($conn,$sql)){
-//         return ["alert-info","Delete all data successfully"];
-//     }else{
-//         return ["alert-danger","ERROR Delete All"];
-//     }
-// }
+function deleteAllData($table_name){
+    global $conn;
+    $sql = "DELETE FROM $table_name";
+    if(mysqli_query($conn,$sql)){
+        return ["alert-info","Delete all data successfully"];
+    }else{
+        return ["alert-danger","ERROR delete"];
+    }
+}
 
 
 ?> 
