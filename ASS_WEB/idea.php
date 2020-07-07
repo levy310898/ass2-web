@@ -81,7 +81,16 @@
             <div class="container">
                 <div class="row">
                     <?php 
-                        $query = "select * from idea";
+                        $queryTotal = "select * from idea";
+                        $count = mysqli_num_rows(mysqli_query($conn, $queryTotal));
+                        $offset = 6;
+                        $totalPage = ceil($count / $offset);
+                        $currentPage = 1;
+                        if (isset($_GET["page"])){
+                            $currentPage = $_GET["page"];
+                        }
+                        $firstIdea = ($currentPage - 1) * $offset;
+                        $query = "select * from idea limit $firstIdea, $offset";
                         $result = mysqli_query($conn, $query);
 
                         while($row = mysqli_fetch_object($result)){
@@ -107,16 +116,26 @@
             
             <div class="nav_page">
                 <ul>
+                <?php if ($currentPage > 1){
+                ?>
                     <li>
-                        <a href="#"><div class="page_number">1</div></a>
+                        <a href="./idea.php?page=<?php echo $currentPage - 1; ?>"><div class="page_number"><</div></a>
                     </li>
+                <?php
+                }
+                ?>
                     <li>
-                        <a href="#"><div class="page_number">2</div></a>
+                        <a href="./idea.php?page=<?php echo $currentPage ?>"><div class="page_number"><?php echo $currentPage ?></div></a>
                     </li>
+                    <?php if ($currentPage < $totalPage){
+                ?>
                     <li>
-                        <a href="#"><div class="page_number">3</div></a>
+                        <a href="./idea.php?page=<?php echo $currentPage + 1; ?>"><div class="page_number">></div></a>
                     </li>
-                    <li>
+                <?php
+                }
+                ?>
+                    <!-- <li>
                         <a href="#"><div class="page_number">4</div></a>
                     </li>
                     <li>
@@ -127,7 +146,7 @@
                     </li>
                     <li>
                         <a href="#"><div class="page_number">6</div></a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
