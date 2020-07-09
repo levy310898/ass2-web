@@ -48,8 +48,8 @@
         // $element = "<h6 class = \"$classname\">$smg</h6>";
         $element = <<<_END
             <div class="alert $classname alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            $smg
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                $smg
             </div>
         _END;
         echo $element;

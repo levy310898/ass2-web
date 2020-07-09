@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="vi">
-
+<?php 
+  require_once('php/db.php');
+  require_once('php/operation.php');
+  require_once('php/component.php');
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +12,12 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="stylesheet" href="js/mmenu-light-master/dist/mmenu-light.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .alert-dismissible .close{
+            right:-45% !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -69,29 +79,41 @@
         </div>
     </div>
 
-    <div class="c_contact_middle">
+    <div>
         <div class="container">
-            <div class="contact_information">
+        <div class="message-box mb-3">
+        <?php 
+            if(isset($_POST["contact_submit"])){
+                $messages = addContact();
+                textNode($messages[0],$messages[1]);
+            }
+        ?>
+    </div>
+            <div class="contact_information mb-5">
                 <h2>Thông tin liên hệ</h2>
                 <div>Bài tập lớn 1 - Môn Lập trình web</div>
                 <div>Chịu trách nhiệm nội dung: Lê Nguyễn Như Cường © 1997-2020 Công ty TNHH THM</div>
                 <div>Điện thoại: 0901234567 Email: 1510362@hcmut.edu.vn</div>
             </div>
-            <div class="guest_input_information">
-                <h2>Thông tin khách hàng</h2>
-                <div>Quý khách có nhu cầu biết thêm về thông tin của các dịch vụ của mặt hàng của công ty, có thể để lại thông tin liên lạc. Nhân viên công ty sẽ liên hệ trong thời gian sớm nhất</div>
-                <h4>Họ và tên</h4>
-                <input type="text">
-                <h4>Số điện thoại</h4>
-                <input type="text">
-                <h4>Địa chỉ email</h4>
-                <input type="text">
-                <h4>Ghi chú</h4>
-                <textarea cols="25" rows="2"></textarea>
-            </div>
-            <div class="info_send">
-                <button>Gửi thông tin</button>
-            </div>
+            <form method = "POST">
+                <div class="form-group">
+                    <label for="fullName">Họ tên:</label>
+                    <input type="text" name="full_name" class="form-control" placeholder="Nhập họ tên: " id="fullName">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Số điện thoại:</label>
+                    <input type="text" name = "phone" class="form-control" placeholder="Nhập số điện thoại" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" name = "email" class="form-control" placeholder="Enter email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="note">Nội dung:</label>
+                    <textarea class="form-control" name = "note" rows="5" id="note"></textarea>
+                </div>
+                <button type="submit" name = "contact_submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
     </div>
 
@@ -126,6 +148,10 @@
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/fontawesome-free-5.13.0-web/js/all.js"></script>
     <script src="js/mmenu-light-master/dist/mmenu-light.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <script>
         document.addEventListener(
