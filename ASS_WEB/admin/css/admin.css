@@ -44,10 +44,6 @@
     padding: 1em;
 }
 
-.data-tr{
-    height:150px !important;
-    overflow: hidden;
-}
 .data-text-area{
     min-width: 150px;
     overflow: hidden;

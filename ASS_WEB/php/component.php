@@ -26,6 +26,24 @@
         echo $ele;
     }
 
+    function passwordElement($name,$placeholder,$id, $value,$disabled){
+        $ele = <<<_END
+        <div class="form-group mb-3">
+            <input type="password" $disabled name="$name" value="$value" class="form-control" placeholder="$placeholder" id="$id" >
+        </div>
+        _END;
+        echo $ele;
+    }
+
+    function emailElement($name,$placeholder,$id, $value,$disabled){
+        $ele = <<<_END
+        <div class="form-group mb-3">
+            <input type="email" $disabled name="$name" value="$value" class="form-control" placeholder="$placeholder" id="$id" >
+        </div>
+        _END;
+        echo $ele;
+    }
+
     function textareaElement($name,$placeholder,$id,$value,$disabled){
         $ele = <<<_END
         <div class="form-group mb-4">
@@ -55,7 +73,7 @@
         echo $element;
     }
 
-    function selectElement(){
+    function selectProductTypeElement(){
         $element = <<<_END
         <div class="form-group">
                   <select class="form-control" id="inputType" name="input_type">
@@ -64,6 +82,19 @@
                     <option value = "2">Sơn ngoại thất</option>
                     <option value = "3">Bột trét tường</option>
                     <option value = "4">Dụng cụ sơn</option>
+                  </select>
+                </div>
+        _END;
+        echo $element;
+    }
+
+    function selectUserRoleElement(){
+        $element = <<<_END
+        <div class="form-group">
+                  <select class="form-control" id="inputType" name="input_type">
+                    <option value = "2" selected hidden>Khách hàng</option>
+                    <option value = "1">Admin</option>
+                    <option value = "2">Khách hàng</option>
                   </select>
                 </div>
         _END;

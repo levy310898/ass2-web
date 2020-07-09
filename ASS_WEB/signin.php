@@ -187,7 +187,7 @@
                     }
                 }else {
                     ?>
-                    <script>alert("Đăng nhập thất bại")</script>
+                    <script>alert("Đăng nhập thất bại <?php echo" $row->name,$row->email"; ?>")</script>
                     <?php
                     return false;
                 }
