@@ -5,6 +5,7 @@
     require_once('php/db.php');
     require_once('php/operation.php');
     require_once('php/component.php');
+    session_start();
 ?>
 
 <head>
@@ -170,6 +171,20 @@
                     ?>
                     <script>alert("Đăng nhập thành công")</script>
                     <?php
+                    $_SESSION["userId"] = $row->id;
+                    $_SESSION["name"] = $row->name;
+                    if ($row->role == 1){
+                        ?>
+                            <script>window.location = "./admin.php"</script>
+                        <?php
+                        return true;
+                    }
+                    else {
+                        ?>
+                            <script>window.location = "./index.php"</script>
+                        <?php
+                        return true;
+                    }
                 }else {
                     ?>
                     <script>alert("Đăng nhập thất bại")</script>
