@@ -73,7 +73,7 @@
     function imageElement(){
         $element = <<<_END
                 <div class="form-group">
-                  <div>
+                  <div class="mb-3 d-flex justify-content-center">
                     <img id="imgDataInput" width="200px">
                   </div>
                   <input type="file" name="file" class="form-control-file border">
