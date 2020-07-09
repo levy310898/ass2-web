@@ -280,40 +280,43 @@
             </div>
 
             <ul class="pagination justify-content-end">
-              <?php 
-                if($current_page >1 && $total_page > 1){
-                  $prev_page = $current_page -1;
-                  echo <<<_END
-                    <li class = "page-item">
-                      <a class = "page-link" href = "?type=$page_type&page=$prev_page">Prev</a>
-                    </li>
-                  _END;
-                }
-
-                for($i = 1; $i <=$total_page; $i++){
-                  if($i == $current_page){
+              <?php
+                if($total_page > 1){
+                  if($current_page >1){
+                    $prev_page = $current_page -1;
                     echo <<<_END
-                    <li class = "page-item active">
-                      <a class = "page-link" href = "?type=$page_type&page=$i">$i</a>
-                    </li>
-                    _END;
-                  }else{
-                    echo <<<_END
-                    <li class = "page-item">
-                      <a class = "page-link" href = "?type=$page_type&page=$i">$i</a>
-                    </li>
+                      <li class = "page-item">
+                        <a class = "page-link" href = "?type=$page_type&page=$prev_page">Prev</a>
+                      </li>
                     _END;
                   }
+  
+                  for($i = 1; $i <=$total_page; $i++){
+                    if($i == $current_page){
+                      echo <<<_END
+                      <li class = "page-item active">
+                        <a class = "page-link" href = "?type=$page_type&page=$i">$i</a>
+                      </li>
+                      _END;
+                    }else{
+                      echo <<<_END
+                      <li class = "page-item">
+                        <a class = "page-link" href = "?type=$page_type&page=$i">$i</a>
+                      </li>
+                      _END;
+                    }
+                  }
+  
+                  if($current_page <$total_page && $total_page >1){
+                    $next_page = $current_page + 1;
+                    echo <<<_END
+                    <li class = "page-item">
+                      <a class = "page-link" href = "?type=$page_type&page=$next_page">Next</a>
+                    </li>
+                  _END;
+                  }
                 }
-
-                if($current_page <$total_page && $total_page >1){
-                  $next_page = $current_page + 1;
-                  echo <<<_END
-                  <li class = "page-item">
-                    <a class = "page-link" href = "?type=$page_type&page=$next_page">Next</a>
-                  </li>
-                _END;
-                }
+                
               ?>
             </ul>
           </form>
