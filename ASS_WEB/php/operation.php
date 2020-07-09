@@ -2,6 +2,7 @@
 require_once('db.php');
 require_once('component.php');
 require_once('picture.php');
+require_once("constrain.php");
 
 function getData($query){
     global $conn;
@@ -116,6 +117,10 @@ function addProductData(){
     }else{
         return ["alert-danger",$isPic[1]];
     }
+
+    if(isValid([$title,$desc],[$price])==false){
+        return ["alert-danger","Thông tin bạn nhập không hợp lệ"];
+    }
     
     // $pic = $_POST['product_img'];
         
@@ -139,6 +144,10 @@ function addIdeaData(){
         $pic = $isPic[1];
     }else{
         return ["alert-danger",$isPic[1]];
+    }
+
+    if(checkText([$title,$content])==false){
+        return ["alert-danger","Thông tin bạn nhập không hợp lệ"];
     }
 
     $sql = "INSERT INTO idea (title,content,picture) VALUE('$title','$content','$pic')";
@@ -178,6 +187,10 @@ function updateProductData(){
     }else{
         return ["alert-danger",$isPic[1]];
     }
+
+    if(isValid([$title,$desc],[$price])==false){
+        return ["alert-danger","Thông tin bạn nhập không hợp lệ"];
+    }
         
     $sql = "UPDATE product SET 
     title = '$title',description = '$desc',type = '$type',price = '$price',picture = '$pic' where id = '$id'";
@@ -205,6 +218,10 @@ function updateIdeaData(){
         }
     }else{
         return ["alert-danger",$isPic[1]];
+    }
+
+    if(checkText([$title,$content])==false){
+        return ["alert-danger","Thông tin bạn nhập không hợp lệ"];
     }
     $sql = "UPDATE idea SET 
     title = '$title',content = '$content',picture = '$pic' where id = '$id'";
@@ -238,6 +255,25 @@ function deleteAllData($table_name){
         return ["alert-info","Delete all data successfully"];
     }else{
         return ["alert-danger","ERROR delete"];
+    }
+}
+
+////////////////////contact///////////////////////////
+function addContact(){
+    global $conn;
+    $full_name = $_POST["full_name"];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $note = $_POST['note'];
+
+    if(isValid([$full_name,$email,$note],[$phone])==false){
+        return ["alert-danger","Thông tin bạn nhập không hợp lệ"];
+    }
+    $sql = "INSERT INTO contact (full_name,phone,email,note) VALUE('$full_name','$phone','$email','$note')";
+    if(mysqli_query($conn,$sql)){
+        return ["alert-info","Cảm ơn bạn $full_name đã đóng góp ý kiến"];
+    }else{
+        return ["alert-danger","OOps, something wrong"];
     }
 }
 

@@ -148,128 +148,9 @@
             <div class="mid_sec">
                 <div class="mid_sec_product">
                     <div class="product_title"><a href="#"><h2>Sản phẩm hot</h2></a></div>
-                    <!-- <div class="list_product">
-                        <ul>
-                            <li>
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="detail.php">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a> 
-                            </li>
-                        </ul>
-                    </div> -->
 
                     <div class="container-lg">
                         <div class="row">
-                            <!-- <div class="col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php" class="product-link">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php" class="product-link">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php" class="product-link">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6 col-12 mt-3">
-                                <a href="detail.php" class="product-link">
-                                    <div class="product">
-                                        <div class="product_img">
-                                            <img src="images/product/1.jpg" alt="product">
-                                        </div>
-                                        <div class="product_info">
-                                            <div class="product_name">Đây là tên sản phẩm, cộng với một mô tả ngắn đủ 2 dòng
-                                            </div>
-                                            <div class="product_price">50000vnd</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> -->
 
                             <?php
                                 loadProduct("SELECT * FROM product",4);
@@ -314,6 +195,9 @@
     <script src="js/nivo-slider/jquery.nivo.slider.js"></script>
     <script src="js/fontawesome-free-5.13.0-web/js/all.js"></script>
     <script src="js/mmenu-light-master/dist/mmenu-light.js"></script>
+
+    <!-- Popper JS -->
+
     <!-- <script src="js/mmenu-light/mmenu-light.js"></script> -->
 
     <script>
