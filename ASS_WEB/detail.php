@@ -308,7 +308,7 @@
     </script>
 
     <?php 
-    function addCart(){
+    function addCart($userid){
         $option = "";
         if(isset($_POST["color-choose"])){
             $option = $_POST["color-choose"];
@@ -323,13 +323,21 @@
 
         global $id, $price, $conn;
         $amount = (int) $_POST["amount"];
-        $query = "insert into cart (product_id, amount, price, p_option) values ($id, $amount, $price * $amount, '$option')";
+        $query = "insert into cart (product_id, amount, price, p_option, user_id) values ($id, $amount, $price * $amount, '$option', $userid)";
 
         mysqli_query($conn, $query);
     }
 
     if(isset($_POST['btn_buy'])){
-        addCart();
+        if(!isset($_SESSION["userId"])){
+            ?>
+                <script>alert("Vui lòng đăng nhập để thêm vào giỏ hàng và mua hàng")</script>
+            <?php
+        }
+        else {
+            $uid = $_SESSION["userId"];
+            addCart($uid);
+        }
     }
     ?>
 </body>
