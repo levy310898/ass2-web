@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
 
+<?php
+    require_once('php/db.php');
+    require_once('php/operation.php');
+    require_once('php/component.php');
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,16 +77,20 @@
 
     <div class="c_signinup_middle">
         <div class="container">
-            <div class="input_field">
-                <h2>Đăng kí</h2>
-                <h4>Email</h4>
-                <input type="email">
-                <h4>Mật khẩu</h4>
-                <input type="password">
-                <h4>Nhập lại mật khẩu</h4>
-                <input type="password">
-                <button>Đăng kí</button>
-            </div>
+            <form method="POST">
+                <div class="input_field">
+                    <h2>Đăng kí</h2>
+                    <h4>Tên</h4>
+                    <input type="name" name="input_name">
+                    <h4>Email</h4>
+                    <input type="email" name="input_email">
+                    <h4>Mật khẩu</h4>
+                    <input type="password" name="input_password1">
+                    <h4>Nhập lại mật khẩu</h4>
+                    <input type="password" name="input_password2">
+                    <button name="btn_signup">Đăng kí</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -135,6 +145,50 @@
                 }
             );
     </script>
+
+    <?php 
+        if(isset($_POST["btn_signup"])){
+            $name = $_POST["input_name"];
+            $email = $_POST["input_email"];
+            $pass1 = $_POST["input_password1"];
+            $pass2 = $_POST["input_password2"];
+            if ($email == "" or $pass1 = "" or $pass2 = ""){
+                ?>
+                <script>alert("Vui lòng nhập đủ các dòng")</script>
+                <?php
+                return false;
+            }
+            $regex = '/.+@.+\..+/';
+            if(!preg_match($regex, $email)){
+                ?>
+                <script>alert("Email có dạng <sth>@<sth>.<sth>");</script>
+                <?php
+                return false;
+            }
+            if($pass1 != $pass2){
+                ?>
+                <script>alert("Kiểm tra password, chưa trùng nhau");</script>
+                <?php
+                return false;
+            }
+            $queryByEmail = "select * from user where email = '$email'";
+            $result = mysqli_query($conn, $queryByEmail);
+            if (mysqli_num_rows($result) > 0){
+                ?>
+                <script>alert("Email này đã có người dùng trước đó, vui lòng chọn email khác");</script>
+                <?php
+                return false;
+            }
+
+            $hash_pass = password_hash($pass1, PASSWORD_DEFAULT);
+
+            $query = "insert into user (name, email, password) values ('$name', '$email', '$hash_pass')";
+            mysqli_query($conn, $query);
+            ?>
+            <script>alert("Thành công")</script>
+            <?php
+        }
+    ?>
 </body>
 
 </html>
