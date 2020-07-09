@@ -161,7 +161,7 @@
                 return false;
             }
 
-            $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
+            // $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
             
             $query = "select * from user where email = '$email'";
             $result = mysqli_query($conn, $query);
@@ -187,7 +187,7 @@
                     }
                 }else {
                     ?>
-                    <script>alert("Đăng nhập thất bại <?php echo" $row->name,$row->email"; ?>")</script>
+                    <script>alert("Đăng nhập thất bại")</script>
                     <?php
                     return false;
                 }

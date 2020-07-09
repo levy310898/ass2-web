@@ -105,8 +105,8 @@ function addUserData(){
     global $conn;
     $name = $_POST['input_name'];
     $email = $_POST['input_email'];
-    $password_1 = trim($_POST['input_password_1']);
-    $password_2 = trim($_POST['input_password_2']);
+    $password_1 = $_POST["input_password_1"];
+    $password_2 = $_POST['input_password_2'];
     $role = $_POST['input_type'];
 
     $check = checkUserInput($name,$email,$password_1,$password_2);
@@ -115,7 +115,7 @@ function addUserData(){
     }
 
     $hash_pass = password_hash($password_1, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO user (name,email,password,role) VALUE('$name','$email','$hash_pass','$role')";
+    $sql = "insert into user (name, email, password, role) values ('$name', '$email', '$hash_pass', '$role')";
 
     if(mysqli_query($conn,$sql)){
         //textNode("primary","Insert data successfully");
