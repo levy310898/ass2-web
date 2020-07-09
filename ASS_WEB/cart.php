@@ -4,6 +4,7 @@
     require_once('php/db.php');
     require_once('php/operation.php');
     require_once('php/component.php');
+    session_start();
 ?>
 <head>
     <meta charset="UTF-8">
@@ -25,12 +26,27 @@
                         <li>Email: 1510362@hcmut.edu.vn</li>
                     </ul>
                 </div>
-                <div class="top_right">
-                    <ul>
-                        <li><a href="signup.php">Đăng kí</a></li>
-                        <li><a href="signin.php">Đăng nhập</a></li>
-                    </ul>
-                </div>
+                <?php
+                    if (!isset($_SESSION["userId"])){
+                        ?>
+                        <div class="top_right">
+                            <ul>
+                                <li><a href="signup.php">Đăng kí</a></li>
+                                <li><a href="signin.php">Đăng nhập</a></li>
+                            </ul>
+                        </div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="top_right">
+                            <ul>
+                                <li><a href="#">Xin chào <?php echo $_SESSION["name"]; ?></a></li>
+                                <li><a href="signout.php">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                        <?php
+                    }
+                ?>
             </div>
 
             <div class="bottom">
