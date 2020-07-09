@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 
+<?php
+    require_once('php/db.php');
+    require_once('php/operation.php');
+    require_once('php/component.php');
+    session_start();
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,14 +78,16 @@
 
     <div class="c_signinup_middle">
         <div class="container">
-            <div class="input_field">
-                <h2>Đăng nhập</h2>
-                <h4>Email</h4>
-                <input type="email">
-                <h4>Mật khẩu</h4>
-                <input type="password">
-                <button>Đăng nhập</button>
-            </div>
+            <form method="POST">
+                <div class="input_field">
+                    <h2>Đăng nhập</h2>
+                    <h4>Email</h4>
+                    <input type="email" name="input_email">
+                    <h4>Mật khẩu</h4>
+                    <input type="password" name="input_password">
+                    <button name="btn_signin">Đăng nhập</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -133,6 +142,58 @@
                 }
             );
     </script>
+
+<?php 
+        if(isset($_POST["btn_signin"])){
+            $email = $_POST["input_email"];
+            $pass = $_POST["input_password"];
+            if ($email == "" or $pass = ""){
+                ?>
+                <script>alert("Vui lòng nhập đủ các dòng")</script>
+                <?php
+                return false;
+            }
+            $regex = '/.+@.+\..+/';
+            if(!preg_match($regex, $email)){
+                ?>
+                <script>alert("Email có dạng <sth>@<sth>.<sth>");</script>
+                <?php
+                return false;
+            }
+
+            $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
+            
+            $query = "select * from user where email = '$email'";
+            $result = mysqli_query($conn, $query);
+
+            while($row = mysqli_fetch_object($result)){
+                if (password_verify($pass, $row->password)){
+                    ?>
+                    <script>alert("Đăng nhập thành công")</script>
+                    <?php
+                    $_SESSION["userId"] = $row->id;
+                    $_SESSION["name"] = $row->name;
+                    if ($row->role == 1){
+                        ?>
+                            <script>window.location = "./admin.php"</script>
+                        <?php
+                        return true;
+                    }
+                    else {
+                        ?>
+                            <script>window.location = "./index.php"</script>
+                        <?php
+                        return true;
+                    }
+                }else {
+                    ?>
+                    <script>alert("Đăng nhập thất bại")</script>
+                    <?php
+                    return false;
+                }
+            }
+        }
+    ?>
 </body>
 
 </html>
