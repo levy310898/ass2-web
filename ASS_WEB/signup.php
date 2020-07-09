@@ -182,7 +182,7 @@
 
             $hash_pass = password_hash($pass1, PASSWORD_DEFAULT);
 
-            $query = "insert into user (name, email, password) values ('$name', '$email', '$hash_pass')";
+            $query = "insert into user (name, email, password, role) values ('$name', '$email', '$hash_pass', 2)";
             mysqli_query($conn, $query);
             ?>
             <script>alert("Thành công")</script>
