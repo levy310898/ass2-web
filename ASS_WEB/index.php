@@ -117,10 +117,8 @@
                     <div class="desc_detail_with_pic wow bounceInUp">
                         <div class="ddwp_text">
                             <div>
-                                <h2>Tiêu đề 1</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus maiores
-                                    veritatis officia aliquam ad possimus quam sit ipsa, perferendis perspiciatis.
-                                    Accusamus nemo molestiae possimus eius ipsa? Ratione, tempora? Fugiat, laboriosam?
+                                <h2>CHUYÊN NGHIỆP DẪN ĐẦU</h2>
+                                <p>THM là công ty chuyên nghiệp, cung cấp giải pháp toàn diện đáp ứng đầy đủ các nhu cầu sơn phủ của bất cứ một công trình xây dựng nào với bề mặt cần sơn phủ là xi măng, tường bê tông, sàn nhà hay trần nhà, bề mặt gỗ, kim loại hay các bề mặt khác.
                                 </p>
                             </div>
                         </div>
@@ -134,10 +132,9 @@
                         </div>
                         <div class="ddwp_text">
                             <div>
-                                <h2>Tiêu đề 1</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus maiores
-                                    veritatis officia aliquam ad possimus quam sit ipsa, perferendis perspiciatis.
-                                    Accusamus nemo molestiae possimus eius ipsa? Ratione, tempora? Fugiat, laboriosam?
+                                <h2>DỊCH VỤ CHUYÊN NGHIỆP</h2>
+                                <p>Chúng tôi cung cấp các bảng phối màu chất lượng cao với nhiều nhóm màu đa dạng cho dự án của bạn,
+                                các dịch vụ hỗ trợ kỹ thuật ngay tại công trình. Đến với chúng tôi, bạn sẽ được tư vấn, cung cấp các sản phẩm chất lượng tốt nhất và các quy trình đạt chuẩn cần thiết. 
                                 </p>
                             </div>
                         </div>

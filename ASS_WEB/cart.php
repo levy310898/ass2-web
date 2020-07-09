@@ -93,46 +93,54 @@
     <div class="c_cart_middle">
         <div class="container-lg">
             <h2>Giỏ hàng</h2>
-            <div class="cart_list_product">
-                <ul>
-                    <?php
-                        $query = "select c.id, c.amount, c.price, p.title, p.picture, c.p_option from cart c inner join product p on c.product_id = p.id";
-                        $result = mysqli_query($conn, $query);
-                        $total = 0;
+            <?php 
+                $total = 0;
+                if (isset($_SESSION["userId"])){
+                    $uid = $_SESSION["userId"];
+                    ?>
+                        <div class="cart_list_product">
+                            <ul>
+                                <?php
+                                    $query = "select c.id, c.amount, c.price, p.title, p.picture, c.p_option from cart c inner join product p on c.product_id = p.id where user_id = $uid";
+                                    $result = mysqli_query($conn, $query);
 
-                        while($row = mysqli_fetch_object($result)){
-                            ?>
-                                <li>
-                                    <div class="cart_product">
-                                        <div class="cart_product_img">
-                                            <img src="<?php echo $row->picture; ?>" alt="">
-                                        </div>
-                                        
-                                        <div class="cart_product_info">
-                                            <div class="cart_pro_name">
-                                                <?php echo $row->title; ?>
-                                            </div>
-                                            <div class="cart_pro_amount">
-                                                Số lượng: <?php echo $row->amount; ?>
-                                            </div>
-                                            <div class="cart_pro_option">
-                                                Option: <?php echo $row->p_option; ?>
-                                            </div>
-                                            <div class="cart_pro_price">
-                                                Số tiền: <?php echo $row->price; ?>
-                                            </div>
-                                            <div class="cart_pro_delete">
-                                                <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xóa</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php
-                            $total = $total + $row->price;
-                        }
-                    ?>              
-                </ul>
-            </div>
+                                    while($row = mysqli_fetch_object($result)){
+                                        ?>
+                                            <li>
+                                                <div class="cart_product">
+                                                    <div class="cart_product_img">
+                                                        <img src="<?php echo $row->picture; ?>" alt="">
+                                                    </div>
+                                                    
+                                                    <div class="cart_product_info">
+                                                        <div class="cart_pro_name">
+                                                            <?php echo $row->title; ?>
+                                                        </div>
+                                                        <div class="cart_pro_amount">
+                                                            Số lượng: <?php echo $row->amount; ?>
+                                                        </div>
+                                                        <div class="cart_pro_option">
+                                                            Option: <?php echo $row->p_option; ?>
+                                                        </div>
+                                                        <div class="cart_pro_price">
+                                                            Số tiền: <?php echo $row->price; ?>
+                                                        </div>
+                                                        <div class="cart_pro_delete">
+                                                            <a href="./cart_delete.php?id=<?php echo $row->id; ?>">Xóa</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <?php
+                                        $total = $total + $row->price;
+                                    }
+                                ?>              
+                            </ul>
+                        </div>
+                    <?php
+                }
+            ?>
+            
 
             <div class="cart_total">
                 <div class="ct_price">
