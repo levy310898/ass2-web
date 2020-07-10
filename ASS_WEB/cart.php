@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <div class="c_cart_middle">
+    <div class="c_cart_middle mt-5">
         <div class="container-lg">
             <h2>Giỏ hàng</h2>
             <?php 
@@ -160,7 +160,7 @@
             </div>
         </div>
     </div>
-
+    <div class="py-5"></div>
     <div class="c_footer">
         <div class="container">
             <div class="footer_left">

@@ -79,6 +79,19 @@
           <span>Idea</span></a>
       </li>
 
+      <hr class="sidebar-divider">
+
+      <li class="nav-item 
+      <?php 
+          if($page_type=='contact'){
+            echo "active";
+          }
+      ?>">
+        <a class="nav-link" href="?type=contact">
+        <i class="fa fa-comments"></i>
+          <span>Contact</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -199,6 +212,8 @@
                     echo "Product control";
                   }else if ($page_type=='idea'){
                     echo "Idea control";
+                  }else if($page_type == 'contact'){
+                    echo 'Contact control';
                   }
                 ?>  
             </h1>
@@ -215,7 +230,10 @@
                 <div class="d-flex justify-content-center btn-box">
                 <!-- print the button add , update and delete all -->
                     <?php 
-                    if($page_type =='user'){
+                    if($page_type == "contact"){
+                      buttonElement("btnDeleteAll","btn btn-danger","<i class=\"fas fa-trash-alt\"></i>","btn_del_all","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Delete all'");
+                    }
+                    else if($page_type =='user'){
                       buttonElement("btnAdd","btn btn-success mr-2","<i class=\"fa fa-plus\"></i>","btn_add","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Add'");
                       buttonElement("btnDeleteAll","btn btn-danger","<i class=\"fas fa-trash-alt\"></i>","btn_del_all","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Delete all'");
                     }else{

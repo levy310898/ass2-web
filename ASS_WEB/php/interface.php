@@ -10,7 +10,7 @@ function showInput($type){
         showInputProduct();
     }else if($type == 'idea'){
         showInputIdea();
-    }else if($type='user'){
+    }else if($type=='user'){
         showInputUser();
     }
 }
@@ -53,6 +53,9 @@ function loadCategoryData($type){
     }else if($type == 'idea'){
         $category = ['id','title','content','picture','edit','delete'];
         printCategory($category);
+    }else{
+        $category = ['id','full name','phone','email','note','delete'];
+        printCategory($category);
     }
 }
 
@@ -72,6 +75,8 @@ function loadDataTable($query,$type){
         loadProductTableData($query);
     }else if($type == 'idea'){
         loadIdeaTableData($query);
+    }else{
+        loadContactDataTable($query);
     }
 }
 //load the product data
@@ -147,6 +152,30 @@ function loadUserDataTable($query){
                 <td data-id="$id"> $name </td>
                 <td data-id="$id"> $email</td>
                 <td data-id="$id"> $role</td>
+                <td><button name="data_delete" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
+            </tr>
+            _END;
+        }
+    }
+}
+
+function loadContactDataTable($query){
+    $data = getData($query);
+    if($data!=false){
+        while($row = mysqli_fetch_assoc($data)){
+            $id = $row['id'];
+            $full_name = $row['full_name'];
+            $phone = $row['phone'];
+            $email = $row['email'];
+            $note = $row['note'];
+            ;
+            echo <<<_END
+            <tr class="data-tr">
+                <td data-id="$id"> $id </td>
+                <td data-id="$id"> $full_name </td>
+                <td data-id="$id"> $phone</td>
+                <td data-id="$id"> $email</td>
+                <td data-id="$id"> $note</td>
                 <td><button name="data_delete" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
             </tr>
             _END;
