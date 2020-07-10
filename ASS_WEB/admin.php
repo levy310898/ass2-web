@@ -215,9 +215,15 @@
                 <div class="d-flex justify-content-center btn-box">
                 <!-- print the button add , update and delete all -->
                     <?php 
-                        buttonElement("btnAdd","btn btn-success mr-2","<i class=\"fa fa-plus\"></i>","btn_add","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Add'");
-                        buttonElement("btnUpdate","btn btn-warning mr-2 text-light","<i class=\"fa fa-pen\"></i>","btn_update","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Update'");
-                        buttonElement("btnDeleteAll","btn btn-danger","<i class=\"fas fa-trash-alt\"></i>","btn_del_all","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Delete all'");
+                    if($page_type =='user'){
+                      buttonElement("btnAdd","btn btn-success mr-2","<i class=\"fa fa-plus\"></i>","btn_add","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Add'");
+                      buttonElement("btnDeleteAll","btn btn-danger","<i class=\"fas fa-trash-alt\"></i>","btn_del_all","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Delete all'");
+                    }else{
+                      buttonElement("btnAdd","btn btn-success mr-2","<i class=\"fa fa-plus\"></i>","btn_add","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Add'");
+                      buttonElement("btnUpdate","btn btn-warning mr-2 text-light","<i class=\"fa fa-pen\"></i>","btn_update","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Update'");
+                      buttonElement("btnDeleteAll","btn btn-danger","<i class=\"fas fa-trash-alt\"></i>","btn_del_all","dat-toggle ='tooltip' data-placement = 'bottom' title = 'Delete all'");
+                    
+                    }
                     ?>
                     </div>
               </form>
@@ -227,7 +233,7 @@
           <div class="message-box">
                   <?php 
                     if(isset($_POST['btn_add'])){
-                      $file = $_FILES['file'];
+                      //$file = $_FILES['file'];
                       $messages = addData($page_type);
                       textNode($messages[0],$messages[1]);
                     }

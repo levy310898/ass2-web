@@ -147,7 +147,7 @@
         if(isset($_POST["btn_signin"])){
             $email = $_POST["input_email"];
             $pass = $_POST["input_password"];
-            if ($email == "" or $pass = ""){
+            if ($email == "" or $pass == ""){
                 ?>
                 <script>alert("Vui lòng nhập đủ các dòng")</script>
                 <?php
@@ -165,33 +165,42 @@
             
             $query = "select * from user where email = '$email'";
             $result = mysqli_query($conn, $query);
-
-            while($row = mysqli_fetch_object($result)){
-                if (password_verify($pass, $row->password)){
-                    ?>
-                    <script>alert("Đăng nhập thành công")</script>
-                    <?php
-                    $_SESSION["userId"] = $row->id;
-                    $_SESSION["name"] = $row->name;
-                    if ($row->role == 1){
-                        ?>
-                            <script>window.location = "./admin.php"</script>
-                        <?php
-                        return true;
+            if($result){
+                if(mysqli_num_rows($result) && mysqli_num_rows($result) > 0 ){
+                    while($row = mysqli_fetch_object($result)){
+                        if (password_verify($pass, $row->password)){
+                            ?>
+                            <script>alert("Đăng nhập thành công")</script>
+                            <?php
+                            $_SESSION["userId"] = $row->id;
+                            $_SESSION["name"] = $row->name;
+                            if ($row->role == 1){
+                                ?>
+                                    <script>window.location = "./admin.php"</script>
+                                <?php
+                                return true;
+                            }
+                            else {
+                                ?>
+                                    <script>window.location = "./index.php"</script>
+                                <?php
+                                return true;
+                            }
+                        }else {
+                            ?>
+                            <script>alert("Đăng nhập thất bại")</script>
+                            <?php
+                            return false;
+                        }
                     }
-                    else {
-                        ?>
-                            <script>window.location = "./index.php"</script>
-                        <?php
-                        return true;
-                    }
-                }else {
+                }else{
                     ?>
-                    <script>alert("Đăng nhập thất bại")</script>
+                        <script>alert("Bạn chưa đăng ký tài khoản này");</script>
                     <?php
-                    return false;
                 }
+                
             }
+            
         }
     ?>
 </body>

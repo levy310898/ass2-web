@@ -10,8 +10,8 @@ function showInput($type){
         showInputProduct();
     }else if($type == 'idea'){
         showInputIdea();
-    }else{
-        showInputProduct();
+    }else if($type='user'){
+        showInputUser();
     }
 }
 //load product input
@@ -22,7 +22,7 @@ function showInputProduct(){
     inputElement('input_type','Enter Type:','inputType',"","hidden");
     inputElement('input_price','Enter Price:','inputPrice',"","");
     inputElement('input_img','Enter img:','inputImg',"","hidden");
-    selectElement();
+    selectProductTypeElement();
     imageElement();
 }
 //load idea input
@@ -33,10 +33,19 @@ function showInputIdea(){
     inputElement('input_img','Enter img:','inputImg',"","hidden");
     imageElement();
 }
+
+function showInputUser(){
+    inputElement('input_id','Enter Id:','inputId',"","readonly");
+    inputElement('input_name','Enter name:','inputName',"","");
+    emailElement('input_email','Enter email:','inputEmail',"","");
+    passwordElement("input_password_1","Enter password",'inputPassword',"","");
+    passwordElement("input_password_2","Enter password again",'inputPasswordAgain',"","");
+    selectUserRoleElement();
+}
 //control category input, or you can say it the <thead> in form load data 
 function loadCategoryData($type){
     if($type =='user'){
-        $category = ['id','title','description','type','price','picture','edit','delete'];
+        $category = ['id','name','email','role','delete'];
         printCategory($category);
     }else if($type == 'product'){
         $category = ['id','title','description','type','price','picture','edit','delete'];
@@ -58,7 +67,7 @@ function printCategory($category){
 //control loadData
 function loadDataTable($query,$type){
     if($type == 'user'){
-        loadProductTableData($query);
+        loadUserDataTable($query);
     }else if($type == 'product'){
         loadProductTableData($query);
     }else if($type == 'idea'){
@@ -109,6 +118,35 @@ function loadIdeaTableData($query){
                 <td data-id="$id" class = "data-text-area"> $content </td>
                 <td data-id="$id"><img src = "$pic" style="height:100px;"></td>
                 <td ><i data-id="$id" class="data-edit fas fa-edit"></i></td>
+                <td><button name="data_delete" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
+            </tr>
+            _END;
+        }
+    }
+}
+
+function getRoleUser($role){
+    if($role == 1){
+        return "admin";
+    }
+    if($role == 2){
+        return "Khách hàng";
+    }
+}
+function loadUserDataTable($query){
+    $data = getData($query);
+    if($data!=false){
+        while($row = mysqli_fetch_assoc($data)){
+            $id = $row['id'];
+            $name = $row['name'];
+            $email = $row['email'];
+            $role = getRoleUser($row['role']);
+            echo <<<_END
+            <tr class="data-tr">
+                <td data-id="$id"> $id </td>
+                <td data-id="$id"> $name </td>
+                <td data-id="$id"> $email</td>
+                <td data-id="$id"> $role</td>
                 <td><button name="data_delete" value ="$id"class = "btn-transfer"><i class="data-del fas fa-trash"></i></button></td>
             </tr>
             _END;

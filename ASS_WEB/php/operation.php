@@ -92,11 +92,37 @@ function getImg($dir,$request){
 //////////////////////////////// adding data //////////////////////////////////
 function addData($type){
     if($type=='user'){
-        return addProductData();
+        return addUserData();
     }else if($type=='product'){
         return addProductData();
     }else if($type =='idea'){
         return addIdeaData();
+    }
+}
+
+////// add user data in admin page
+function addUserData(){
+    global $conn;
+    $name = $_POST['input_name'];
+    $email = $_POST['input_email'];
+    $password_1 = $_POST["input_password_1"];
+    $password_2 = $_POST['input_password_2'];
+    $role = $_POST['input_type'];
+
+    $check = checkUserInput($name,$email,$password_1,$password_2);
+    if($check[0] == false){
+        return ['alert-danger',$check[1]];
+    }
+    echo "password1 = $password_1";
+    $hash_pass = password_hash($password_1, PASSWORD_DEFAULT);
+    $sql = "insert into user (name, email, password, role) values ('$name', '$email', '$hash_pass', '$role')";
+
+    if(mysqli_query($conn,$sql)){
+        //textNode("primary","Insert data successfully");
+        return ["alert-info","Insert data succesfully"];
+    }else{
+         //textNode("error","ERROR");
+        return ["alert-danger","ERROR Insert"];
     }
 }
 

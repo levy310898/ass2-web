@@ -152,7 +152,7 @@
             $email = $_POST["input_email"];
             $pass1 = $_POST["input_password1"];
             $pass2 = $_POST["input_password2"];
-            if ($email == "" or $pass1 = "" or $pass2 = ""){
+            if ($email == "" or $pass1 == "" or $pass2 == ""){
                 ?>
                 <script>alert("Vui lòng nhập đủ các dòng")</script>
                 <?php
