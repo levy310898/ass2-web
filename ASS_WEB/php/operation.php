@@ -113,7 +113,7 @@ function addUserData(){
     if($check[0] == false){
         return ['alert-danger',$check[1]];
     }
-
+    echo "password1 = $password_1";
     $hash_pass = password_hash($password_1, PASSWORD_DEFAULT);
     $sql = "insert into user (name, email, password, role) values ('$name', '$email', '$hash_pass', '$role')";
 
